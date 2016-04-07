@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raawaa.github.io/"/>
-  <updated>2016-04-04T14:27:33.709Z</updated>
+  <updated>2016-04-07T12:50:58.848Z</updated>
   <id>http://raawaa.github.io/</id>
   
   <author>
@@ -16,23 +16,55 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>危险! 分离头指针</title>
+    <link href="http://raawaa.github.io/2016/04/07/git-detached-head/"/>
+    <id>http://raawaa.github.io/2016/04/07/git-detached-head/</id>
+    <published>2016-04-07T04:29:12.000Z</published>
+    <updated>2016-04-07T12:50:58.848Z</updated>
+    
+    <content type="html">&lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;At the source of every error which is blamed on the computer you will find at least two human errors, including the error of blaming it on the computer.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这个博客是用 &lt;a href=&quot;https://hexo.io&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt; 生成的静态网站，文章内容用 Git 作版本控制。前几天在一次提交之后，发现提交的内容不见了，到底发生了什么？&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3&gt;案件回放&lt;/h3&gt;
+&lt;p&gt;当时我认为自己正处在 &lt;code&gt;master&lt;/code&gt; 分支上，编辑提交后随手查看了一下 &lt;code&gt;git log&lt;/code&gt; ，发现 &lt;code&gt;master&lt;/code&gt; 分支指针仍指在前一次提交上，并没有前进。这是我第一次碰到这种情况，当我发现有些不对劲的时候，我无知地直接检出了 &lt;code&gt;master&lt;/code&gt; 分支。于是刚刚提交的改动都消失不见了，从 log 里也找不到那次提交的痕迹。这也要怪 &lt;a href=&quot;https://magit.vc/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Magit!&lt;/a&gt; 没有给我任何警告，倒是命令行下的 git 给出一行提示：我处于分离头指针状态，&lt;/p&gt;
+&lt;h3&gt;分离头指针（detached HEAD）&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.stack.imgur.com/ql2gY.png&quot; alt=&quot;detached HEAD&quot;&gt;&lt;/p&gt;
+&lt;p&gt;通常，我们工作在某一个分支上，比如 master 分支。这个时候 master 指针和 HEAD 指针是一起前进的，每做一次提交，这两个指针就会一起向前挪一步。但是在某种情况下（例如 checkout 了某个具体的 commit），master 指针 和 HEAD 指针这种「绑定」的状态就被打破了，变成了分离头指针状态。我那天遇到的情况是，master 和 HEAD 指针看上去指在同一个 commit 上，但其实已经处在分离头指针状态。当我在此时又做了一次新的提交时，HEAD 指针跑到 master 指针前面去了。如果我直接检出 master 分支，HEAD 指针就会回退一格到 master 指针的位置，而最新的那次提交就变成了孤立的提交，没有任何分支能追踪到它，刚才的活白干了。&lt;/p&gt;
+&lt;p&gt;吃一堑长一智，下面是解决办法：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 强制将 master 分支指向当前头指针的位置&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git branch &lt;span class=&quot;_&quot;&gt;-f&lt;/span&gt; master HEAD&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 检出 master 分支&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git checkout master&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;At the source of every error which is blamed on the computer you will find at least two human errors, including the error of blaming it on the computer.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这个博客是用 &lt;a href=&quot;https://hexo.io&quot;&gt;Hexo&lt;/a&gt; 生成的静态网站，文章内容用 Git 作版本控制。前几天在一次提交之后，发现提交的内容不见了，到底发生了什么？&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Git" scheme="http://raawaa.github.io/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Nvidia 闭源驱动导致 GDM 故障</title>
     <link href="http://raawaa.github.io/2016/04/04/gdm-wont-start-on-boot-with-nvidia-drivers/"/>
     <id>http://raawaa.github.io/2016/04/04/gdm-wont-start-on-boot-with-nvidia-drivers/</id>
     <published>2016-04-04T14:03:13.000Z</published>
-    <updated>2016-04-04T14:27:33.709Z</updated>
+    <updated>2016-04-07T12:11:20.737Z</updated>
     
     <content type="html">&lt;p&gt;昨日升级 Arch 后发生严重故障：启动后 GDM 直接歇菜了。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;&lt;img src=&quot;http://i.stack.imgur.com/64xP5.jpg&quot; alt=&quot;Oh no! Something has gone wrong.&quot;&gt;&lt;/p&gt;
-&lt;p&gt;第一想到的就是显卡驱动的问题，于是将闭源驱动替换为 nouveau。系统能正常启动了。到 Arch 官网上搜了一下，2015年十月份的时候已经有鬼佬报了相同的 Bug （&lt;a href=&quot;https://bugs.archlinux.org/task/46769?project=1&amp;amp;cat[0]=2&amp;amp;string=gdm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;FS#46769&lt;/a&gt;）。&lt;/p&gt;
+&lt;p&gt;第一想到的就是显卡驱动的问题，于是将闭源驱动替换为 nouveau。系统能正常启动了。到 Arch 官网上搜了一下，2015年十月份的时候已经有鬼佬报了相同的 Bug （&lt;a href=&quot;https://bugs.archlinux.org/task/46769?project=1&amp;amp;cat%5B0%5D=2&amp;amp;string=gdm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;FS#46769&lt;/a&gt;）。&lt;/p&gt;
 &lt;p&gt;再次提醒一下自己，更换显卡驱动的时候不能忘记删除原有的 &lt;code&gt;xorg.conf&lt;/code&gt; 配置文件。&lt;/p&gt;
 </content>
     
     <summary type="html">
     
       &lt;p&gt;昨日升级 Arch 后发生严重故障：启动后 GDM 直接歇菜了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://i.stack.imgur.com/64xP5.jpg&quot; alt=&quot;Oh no! Something has gone wrong.&quot;&gt;&lt;/p&gt;
-&lt;p&gt;第一想到
     
     </summary>
     
@@ -47,18 +79,22 @@
   
   <entry>
     <title>如何在RIME输入法中使用小鹤双拼（linux）</title>
-    <link href="http://raawaa.github.io/2016/04/04/how-to-enable-flypy-in-rime-in-linux/"/>
-    <id>http://raawaa.github.io/2016/04/04/how-to-enable-flypy-in-rime-in-linux/</id>
+    <link href="http://raawaa.github.io/2016/04/04/how-to-enable-flypy-in-rime-on-linux/"/>
+    <id>http://raawaa.github.io/2016/04/04/how-to-enable-flypy-in-rime-on-linux/</id>
     <published>2016-04-04T07:37:15.000Z</published>
-    <updated>2016-04-04T14:00:06.052Z</updated>
+    <updated>2016-04-07T12:11:20.737Z</updated>
     
     <content type="html">&lt;p&gt;在 Windows 版的 RIME 输入法中，已经内置了各种常用的输入方案，而且有图形化的配置工具，开箱即用。Linux 下就是另一回事了，安装之后默认只有全拼，要用上小鹤双拼还得自己动手。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;安装-Rime-和双拼方案&quot;&gt;&lt;a href=&quot;#安装-Rime-和双拼方案&quot; class=&quot;headerlink&quot; title=&quot;安装 Rime 和双拼方案&quot;&gt;&lt;/a&gt;安装 Rime 和双拼方案&lt;/h1&gt;&lt;h2 id=&quot;Ubuntu-下&quot;&gt;&lt;a href=&quot;#Ubuntu-下&quot; class=&quot;headerlink&quot; title=&quot;Ubuntu 下:&quot;&gt;&lt;/a&gt;Ubuntu 下:&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ sudo apt-get install ibus-rime                  &lt;span class=&quot;comment&quot;&gt;# 安装 ibus-rime ，据说 fcitx-rime 不是官方维护的。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ sudo apt-get insatll librime-data-double-pinyin &lt;span class=&quot;comment&quot;&gt;# 安装双拼方案&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;Archlinux-下&quot;&gt;&lt;a href=&quot;#Archlinux-下&quot; class=&quot;headerlink&quot; title=&quot;Archlinux 下&quot;&gt;&lt;/a&gt;Archlinux 下&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ sudo pacman -S ibus-rime  &lt;span class=&quot;comment&quot;&gt;# Archlinux 下已自带双拼方案，无需另外安装&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h1 id=&quot;激活小鹤双拼方案选项&quot;&gt;&lt;a href=&quot;#激活小鹤双拼方案选项&quot; class=&quot;headerlink&quot; title=&quot;激活小鹤双拼方案选项&quot;&gt;&lt;/a&gt;激活小鹤双拼方案选项&lt;/h1&gt;&lt;p&gt;安装完 Rime 之后默认的方案选单里并没有小鹤双拼，需要自己添加进去。新建配置文件 &lt;code&gt;~/.config/ibus/rime/default.custom.yaml&lt;/code&gt;, 添加如下内容：&lt;/p&gt;
+&lt;h1&gt;安装 Rime 和双拼方案&lt;/h1&gt;
+&lt;h2&gt;Ubuntu 下：&lt;/h2&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 安装 ibus-rime ，据说 fcitx-rime 不是官方维护的。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ sudo apt-get install ibus-rime&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 安装双拼方案&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ sudo apt-get insatll librime-data-double-pinyin&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2&gt;Archlinux 下：&lt;/h2&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ sudo pacman -S ibus-rime  &lt;span class=&quot;comment&quot;&gt;# Archlinux 下已自带双拼方案，无需另外安装&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h1&gt;激活小鹤双拼方案选项&lt;/h1&gt;
+&lt;p&gt;安装完 Rime 之后默认的方案选单里并没有小鹤双拼，需要自己添加进去。新建配置文件 &lt;code&gt;~/.config/ibus/rime/default.custom.yaml&lt;/code&gt;, 添加如下内容：&lt;/p&gt;
 &lt;figure class=&quot;highlight yaml&quot;&gt;&lt;figcaption&gt;&lt;span&gt;default.custom.yaml&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;patch:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;  schema_list:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    - schema:&lt;/span&gt; luna_pinyin          &lt;span class=&quot;comment&quot;&gt;# 朙月拼音&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    - schema:&lt;/span&gt; luna_pinyin_simp     &lt;span class=&quot;comment&quot;&gt;# 朙月拼音 简化字模式&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    - schema:&lt;/span&gt; luna_pinyin_tw       &lt;span class=&quot;comment&quot;&gt;# 朙月拼音 臺灣正體模式&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    - schema:&lt;/span&gt; terra_pinyin         &lt;span class=&quot;comment&quot;&gt;# 地球拼音 dì qiú pīn yīn&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    - schema:&lt;/span&gt; bopomofo             &lt;span class=&quot;comment&quot;&gt;# 注音&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    - schema:&lt;/span&gt; jyutping             &lt;span class=&quot;comment&quot;&gt;# 粵拼&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    - schema:&lt;/span&gt; cangjie5             &lt;span class=&quot;comment&quot;&gt;# 倉頡五代&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    - schema:&lt;/span&gt; cangjie5_express     &lt;span class=&quot;comment&quot;&gt;# 倉頡 快打模式&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    - schema:&lt;/span&gt; quick5               &lt;span class=&quot;comment&quot;&gt;# 速成&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    - schema:&lt;/span&gt; wubi86               &lt;span class=&quot;comment&quot;&gt;# 五笔 86&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    - schema:&lt;/span&gt; wubi_pinyin          &lt;span class=&quot;comment&quot;&gt;# 五笔拼音混合輸入&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    - schema:&lt;/span&gt; double_pinyin        &lt;span class=&quot;comment&quot;&gt;# 自然碼雙拼&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    - schema:&lt;/span&gt; double_pinyin_mspy   &lt;span class=&quot;comment&quot;&gt;# 微軟雙拼&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    - schema:&lt;/span&gt; double_pinyin_abc    &lt;span class=&quot;comment&quot;&gt;# 智能 ABC 雙拼&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    - schema:&lt;/span&gt; double_pinyin_flypy  &lt;span class=&quot;comment&quot;&gt;# 小鶴雙拼&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    - schema:&lt;/span&gt; wugniu               &lt;span class=&quot;comment&quot;&gt;# 吳語上海話（新派）&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    - schema:&lt;/span&gt; wugniu_lopha         &lt;span class=&quot;comment&quot;&gt;# 吳語上海話（老派）&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    - schema:&lt;/span&gt; sampheng             &lt;span class=&quot;comment&quot;&gt;# 中古漢語三拼&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    - schema:&lt;/span&gt; zyenpheng            &lt;span class=&quot;comment&quot;&gt;# 中古漢語全拼&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    - schema:&lt;/span&gt; ipa_xsampa           &lt;span class=&quot;comment&quot;&gt;# X-SAMPA 國際音標&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    - schema:&lt;/span&gt; emoji                &lt;span class=&quot;comment&quot;&gt;# emoji 表情&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;这里不光添加了小鹤双拼，还添加了其他方案的选单。好了，之后就可以通过 Rime 的快捷键 C-` 来选择小鹤双拼了。&lt;/p&gt;
+&lt;p&gt;这里不光添加了小鹤双拼，还添加了其他方案的选单。好了，之后就可以通过 Rime 的快捷键 Ctrl-` 来选择小鹤双拼了。&lt;/p&gt;
 </content>
     
     <summary type="html">
@@ -93,10 +129,11 @@
 &lt;p&gt;「数据过去就有，只不过现在数据的量更大了，但同时也产生了过去得不到的新数据，」软件方案提供商 SAP 的能源方案主管 James McLelland 说道，「我们发现一些有趣的用例正在诞生出来，多数是在智能仪表分析和智能电网方面。」&lt;/p&gt;
 &lt;p&gt;分析信息的过程遵循一个标准的模式。原始数据从智能仪表、电网上的传感器、工业设备、数据库、收集点或其他设备上采集起来。之后通过某种形式的远距离通信、射频识别（RFID）或有线/无线网络传输至服务器或专用设备上，这些服务器或专用设备只负责单一的工作——清理数据。这项工作以往由「大型数据仓库」实现，但现在通过 Apache Hadoop 集群和内存数据库（此类数据库将数据存储在内存中而非硬盘中）可以大大地提速这一过程。Apache Hadoop 是可运行在商用硬件集群上，用于数据存储和大规模数据处理的一款开源软件框架。&lt;/p&gt;
 &lt;p&gt;在「脏数据」（重复的或不完整的数据）被清理掉之后，剩余的信息被发送到分析引擎，在其上运行一系列的算法，这些算法即所谓的「秘密配方」，被设计用来寻找数据的内在的意义，以便之后用于第三方报告或数据可视化软件。&lt;/p&gt;
-&lt;h1 id=&quot;智能仪表拓展了数据的疆域&quot;&gt;&lt;a href=&quot;#智能仪表拓展了数据的疆域&quot; class=&quot;headerlink&quot; title=&quot;智能仪表拓展了数据的疆域&quot;&gt;&lt;/a&gt;智能仪表拓展了数据的疆域&lt;/h1&gt;&lt;p&gt;对数据规模的精确估计即便可能，也很难做到。SAP 的 McLelland 相信，在智能仪表的帮助下，未来由能源设施产生的数据规模将从几 G 字节上升到几千 T 字节的数量级。另有来自 GigaOM 网站文章估计，智能仪表的普及将在全球产生每年百万 T 字节的数据。可持续能源中心（Centre for Sustainable Energy, CSE）是一家由公共、私人、志愿者组织组成的联合机构，其目的在于探索应对日益严重的能源消耗和气候变化问题的技术和方法。&lt;/p&gt;
+&lt;h1&gt;智能仪表拓展了数据的疆域&lt;/h1&gt;
+&lt;p&gt;对数据规模的精确估计即便可能，也很难做到。SAP 的 McLelland 相信，在智能仪表的帮助下，未来由能源设施产生的数据规模将从几 G 字节上升到几千 T 字节的数量级。另有来自 GigaOM 网站文章估计，智能仪表的普及将在全球产生每年百万 T 字节的数据。可持续能源中心（Centre for Sustainable Energy, CSE）是一家由公共、私人、志愿者组织组成的联合机构，其目的在于探索应对日益严重的能源消耗和气候变化问题的技术和方法。&lt;/p&gt;
 &lt;p&gt;2012年，它们与「西方配电」、「苏格兰及南方能源」、「布里斯托大学」合作发起一个项目，开发一套名为「基于 Hadoop 的智能仪表分析」（Smart Meter Analytics, Scaled by Hadoop）的大数据平台原型，根据其设计可以存储、处理、收集最大 20TB 大小的数据集，相当于13个家庭一年产生的数据量。&lt;/p&gt;
 &lt;p&gt;毫无疑问，智能仪表的部署提高了仪表读数的读取频率，CSE 估计，英国消费的一半电力是每 6 个月才读一次读数的，尽管电价计费是以半小时为单位的。CSE 还解释道，目前的表计读数无法提供一天中不同时段的用电情况，而这些数据对于建立精确的用户档案十分关键。&lt;/p&gt;
-&lt;p&gt;“我们期望能源用户能参与到公司的决策中来，”英国国家电网输电未来策略团队的 Mark Osborne 解释道，&amp;quot;过去，你所能做的只是每季度得到一张账单，或者去 uSwitch.com 换一家服务商。但是如今你可以选择在早晨或傍晚电费便宜的时候洗衣服。&amp;quot;&lt;/p&gt;
+&lt;p&gt;“我们期望能源用户能参与到公司的决策中来，”英国国家电网输电未来策略团队的 Mark Osborne 解释道，&amp;quot;过去，你所能做的只是每季度得到一张账单，或者去 &lt;a href=&quot;http://uSwitch.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;uSwitch.com&lt;/a&gt; 换一家服务商。但是如今你可以选择在早晨或傍晚电费便宜的时候洗衣服。&amp;quot;&lt;/p&gt;
 &lt;p&gt;E.ON 集团，一家覆盖全球30个国家的跨国公司，已经与瑞典电信设备供应商「爱立信」建立合约，于 2013 年至 2018 年期间在瑞典安装超过 60 万个智能电表，此举被描述为迈向实时大数据计量的重要一步，以便为 E.ON 的客户提供精确及时的用能信息。&lt;/p&gt;
 &lt;p&gt;(未完待续)&lt;/p&gt;
 </content>
@@ -124,15 +161,15 @@
     <published>2015-11-05T15:10:11.000Z</published>
     <updated>2016-04-04T08:20:03.594Z</updated>
     
-    <content type="html">&lt;p&gt;\begin{equation}
-E = mc^{2}
+    <content type="html">&lt;p&gt;\begin{equation}&lt;br&gt;
+E = mc^{2}&lt;br&gt;
 \end{equation}&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;p&gt;\begin{equation}
-E = mc^{2}
+      &lt;p&gt;\begin{equation}&lt;br&gt;
+E = mc^{2}&lt;br&gt;
 \end{equation}&lt;/p&gt;
 
     
