@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raawaa.github.io/"/>
-  <updated>2016-04-07T12:50:58.848Z</updated>
+  <updated>2016-04-09T01:37:57.926Z</updated>
   <id>http://raawaa.github.io/</id>
   
   <author>
@@ -14,6 +14,56 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我所遇到过的入门好书</title>
+    <link href="http://raawaa.github.io/2016/04/09/cs-for-beginners/"/>
+    <id>http://raawaa.github.io/2016/04/09/cs-for-beginners/</id>
+    <published>2016-04-09T01:22:57.000Z</published>
+    <updated>2016-04-09T01:37:57.926Z</updated>
+    
+    <content type="html">&lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;Learn as if you were to live forever.&lt;br&gt;
+—— Mahatma Gandhi&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我写程序的水平很业余，但是对于如何做一名入门级菜鸟这件事，我是很资深的。就好像一个长期留级的一年级小学生，虽然功课很差，但是当小学生的经验却很丰富。在我刚刚自学写程序的时候，喜欢先拿一本语言书开始啃，然后学习一个框架开始直接尝试做做小东西，但是写了没多久脑子里就不断涌现出各种自己回答不了的问题，这些问题像水槽里的脏盘子一样，总有一天不得不面对。我现在只想踏踏实实的回头打一下基础，顺便分享一下过程中遇到的好书吧。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3&gt;《计算机程序的构造和解释》&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://mitpress.mit.edu/sicp/graphics/main-banner.gif&quot; alt=&quot;sicp&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这本“巫师书”实在是太出名了，常常被简称为 SICP（Structure and Interpretation of Computer Programs），是 MIT 的课本（课程代号 CS6.001）。这门课从 1980 年一直教到 2008 年，横跨近三十年。也说明这是一本经得起时间考验的课本。1986 年，该课程的两位老师（也是这本书的作者） Hal Abelson 和 Gerald Jay Sussman 给惠普员工做了一次全套讲座，讲座全程录像，也是这门课在历史上留下的唯一的视频资料（绝对渣画质）。本书可以免费在线阅读，机械工业出版社出过中文版。&lt;/p&gt;
+&lt;p&gt;年初春节的时候，我买了中文版，看了两集讲座视频。让我很介意的是，这门课用 Lisp 作为教学语言，一门可能我今后一辈子都用不到的语言（除了给 Emacs 写配置文件），我不想把宝贵的时间花在学 Lisp 上。况且搞 Lisp 的人后来都出事了（田春冰河跟老婆离婚、李杀穷到交不起房租……）。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://groups.csail.mit.edu/mac/classes/6.001/abelson-sussman-lectures/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://groups.csail.mit.edu/mac/classes/6.001/abelson-sussman-lectures/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;《Composing Programs》&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://ooo.0o0.ooo/2016/04/08/57084401d8fc6.png&quot; alt=&quot;Composing Programs&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这本书只能在线阅读，并没有实体版。这本书同时也是 UC Berkeley 大学本科生计算机入门课程的课本（课程代号 CS61A），作者 John DeNero 同时也是这门课的教师（现在的授课老师好像已经换人了）。另外 UC Berkeley 十分开放，CS61A 这门课的资料是完全公开的，包括讲座视频、幻灯、大作业小作业，以及作业答案。我目前跟着2015 年春季那一期的课程学到第四周。之所以喜欢它，是因为它的内容是根据 SICP 来写的，几乎就是将 SICP 翻译成了 python 的版本。哦对了，我还没有说，它的教学语言用的是 python，相比原版 SICP 课程难度要小一些，没有那么强的挫败感。另外吸引我的一个地方是，课程后期你将学会如何写一个简单的 python 解释器。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CS61A, Spring 2015: &lt;a href=&quot;http://inst.eecs.berkeley.edu/~cs61a/sp15/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://inst.eecs.berkeley.edu/~cs61a/sp15/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Composing Programs: &lt;a href=&quot;http://composingprograms.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://composingprograms.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;《A Computer Science Tapestry》&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.cs.duke.edu/csed/tapestry/tapestrycover.png&quot; alt=&quot;A Computer Science Tapestry, second edition&quot;&gt;&lt;/p&gt;
+&lt;p&gt;对这本书的了解不多，只知道是杜克大学的人写的。本书的纸质版本已经绝版，作者把电子 PDF 版本放上了网，大家可以随意下载。我觉得这是一本入门好书是因为，它用的教学语言是 C++，然而却又不是一本只讲语言的书。就好象书的副标题所说的：用 C++ 探索计算机科学与编程。不过这本书的很多地方实在是太偏「入门」了，对我来说有点罗嗦，所以目前并不打算看。何况全书 879 页，堪比《C++ Primer》，读起来是一笔不小的时间投入，推荐给零基础想入门 C++ 的同学。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A Computer Science Tapestry, second edition: &lt;a href=&quot;https://www.cs.duke.edu/csed/tapestry/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.cs.duke.edu/csed/tapestry/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Handmade Hero&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://ooo.0o0.ooo/2016/04/08/57085000f203c.jpg&quot; alt=&quot;Handmade Hero - Announcement Trailer&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这并不是一本书，而是一套连载的视频教程。某个叫 &lt;a href=&quot;http://mollyrocket.com/casey/about.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Casey Muratori&lt;/a&gt; 的人正在做一款叫 Handmade Hero 的游戏。为什么叫 Handmade 呢？因为他不会用到任何游戏引擎，甚至不用 OpenGL、DirectX 这种东西，完全用 C 从头开始写，并且不是玩玩票的，按他的说法，要写一个 “professional-quality game”。但他的目的并不只是写游戏，而是教大家怎么用这种古早的办法写游戏，每个工作日的晚上8点，Muratori 会在 twitch 上直播他写代码的全过程，并且一边写代码一边解释 &amp;quot;每一行代码&amp;quot;，目前他已经坚持了快 300 天了！当我知道有这么一件事的时候，我激动得快要晕过去了，我要把这些视频全部拖下来珍藏。&lt;/p&gt;
+&lt;p&gt;最后感慨一下，老师、学伴和一整段连续的空余时间都是很珍贵的东西，但自己在拥有的时候不知道珍惜。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;Learn as if you were to live forever.&lt;br&gt;
+—— Mahatma Gandhi&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我写程序的水平很业余，但是对于如何做一名入门级菜鸟这件事，我是很资深的。就好像一个长期留级的一年级小学生，虽然功课很差，但是当小学生的经验却很丰富。在我刚刚自学写程序的时候，喜欢先拿一本语言书开始啃，然后学习一个框架开始直接尝试做做小东西，但是写了没多久脑子里就不断涌现出各种自己回答不了的问题，这些问题像水槽里的脏盘子一样，总有一天不得不面对。我现在只想踏踏实实的回头打一下基础，顺便分享一下过程中遇到的好书吧。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>危险! 分离头指针</title>
