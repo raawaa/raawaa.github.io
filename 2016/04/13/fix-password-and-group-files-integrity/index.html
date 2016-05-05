@@ -39,7 +39,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Linux,Rime," />
+  <meta name="keywords" content="Linux," />
 
 
 
@@ -57,16 +57,22 @@
 
 
 
-<meta name="description" content="在 Windows 版的 RIME 输入法中，已经内置了各种常用的输入方案，而且有图形化的配置工具，开箱即用。Linux 下就是另一回事了，安装之后默认只有全拼，要用上小鹤双拼还得自己动手。">
+<meta name="description" content="Don&apos;t confuse things that need action with those that take care of themselves.
+
+Linux 中安装一些软件的时候，会自动在系统中创建相应的用户。比如 mysql、各种 display manager，以及我用来在家里实现 DLNA 视频点播的 minidlna 等等。然而当卸载这些软件的时候，当初自动创建的用户可能还留">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何在RIME输入法中使用小鹤双拼（linux）">
-<meta property="og:url" content="http://raawaa.github.io/2016/04/04/how-to-enable-flypy-in-rime-on-linux/index.html">
+<meta property="og:title" content="修复 Linux 用户和用户组完整性">
+<meta property="og:url" content="http://raawaa.github.io/2016/04/13/fix-password-and-group-files-integrity/index.html">
 <meta property="og:site_name" content="小心地滑">
-<meta property="og:description" content="在 Windows 版的 RIME 输入法中，已经内置了各种常用的输入方案，而且有图形化的配置工具，开箱即用。Linux 下就是另一回事了，安装之后默认只有全拼，要用上小鹤双拼还得自己动手。">
-<meta property="og:updated_time" content="2016-04-07T12:11:20.737Z">
+<meta property="og:description" content="Don&apos;t confuse things that need action with those that take care of themselves.
+
+Linux 中安装一些软件的时候，会自动在系统中创建相应的用户。比如 mysql、各种 display manager，以及我用来在家里实现 DLNA 视频点播的 minidlna 等等。然而当卸载这些软件的时候，当初自动创建的用户可能还留">
+<meta property="og:updated_time" content="2016-04-18T12:45:32.144Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何在RIME输入法中使用小鹤双拼（linux）">
-<meta name="twitter:description" content="在 Windows 版的 RIME 输入法中，已经内置了各种常用的输入方案，而且有图形化的配置工具，开箱即用。Linux 下就是另一回事了，安装之后默认只有全拼，要用上小鹤双拼还得自己动手。">
+<meta name="twitter:title" content="修复 Linux 用户和用户组完整性">
+<meta name="twitter:description" content="Don&apos;t confuse things that need action with those that take care of themselves.
+
+Linux 中安装一些软件的时候，会自动在系统中创建相应的用户。比如 mysql、各种 display manager，以及我用来在家里实现 DLNA 视频点播的 minidlna 等等。然而当卸载这些软件的时候，当初自动创建的用户可能还留">
 
 
 
@@ -84,7 +90,7 @@
   };
 </script>
 
-  <title> 如何在RIME输入法中使用小鹤双拼（linux） | 小心地滑 </title>
+  <title> 修复 Linux 用户和用户组完整性 | 小心地滑 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -224,7 +230,7 @@
             
             
               
-                如何在RIME输入法中使用小鹤双拼（linux）
+                修复 Linux 用户和用户组完整性
               
             
           </h1>
@@ -236,8 +242,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-04T15:37:15+08:00" content="2016-04-04">
-              2016-04-04
+            <time itemprop="dateCreated" datetime="2016-04-13T12:17:59+08:00" content="2016-04-13">
+              2016-04-13
             </time>
           </span>
 
@@ -247,8 +253,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/04/how-to-enable-flypy-in-rime-on-linux/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/04/how-to-enable-flypy-in-rime-on-linux/" itemprop="commentsCount"></span>
+                <a href="/2016/04/13/fix-password-and-group-files-integrity/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/13/fix-password-and-group-files-integrity/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -270,17 +276,18 @@
       
 
       
-        <p>在 Windows 版的 RIME 输入法中，已经内置了各种常用的输入方案，而且有图形化的配置工具，开箱即用。Linux 下就是另一回事了，安装之后默认只有全拼，要用上小鹤双拼还得自己动手。</p>
+        <blockquote class="blockquote-center"><p>Don't confuse things that need action with those that take care of themselves.</p>
+</blockquote>
+<p>Linux 中安装一些软件的时候，会自动在系统中创建相应的用户。比如 mysql、各种 display manager，以及我用来在家里实现 DLNA 视频点播的 minidlna 等等。然而当卸载这些软件的时候，当初自动创建的用户可能还留存在系统中，需要我们手动删除。这几天我就碰到了这样的例子。</p>
 <a id="more"></a>
-<h1>安装 Rime 和双拼方案</h1>
-<h2>Ubuntu 下：</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 ibus-rime ，据说 fcitx-rime 不是官方维护的。</span></span><br><span class="line">$ sudo apt-get install ibus-rime</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装双拼方案</span></span><br><span class="line">$ sudo apt-get insatll librime-data-double-pinyin</span><br></pre></td></tr></table></figure>
-<h2>Archlinux 下：</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S ibus-rime  <span class="comment"># Archlinux 下已自带双拼方案，无需另外安装</span></span><br></pre></td></tr></table></figure>
-<h1>激活小鹤双拼方案选项</h1>
-<p>安装完 Rime 之后默认的方案选单里并没有小鹤双拼，需要自己添加进去。新建配置文件 <code>~/.config/ibus/rime/default.custom.yaml</code>, 添加如下内容：</p>
-<figure class="highlight yaml"><figcaption><span>default.custom.yaml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">patch:</span></span><br><span class="line"><span class="attr">  schema_list:</span></span><br><span class="line"><span class="attr">    - schema:</span> luna_pinyin          <span class="comment"># 朙月拼音</span></span><br><span class="line"><span class="attr">    - schema:</span> luna_pinyin_simp     <span class="comment"># 朙月拼音 简化字模式</span></span><br><span class="line"><span class="attr">    - schema:</span> luna_pinyin_tw       <span class="comment"># 朙月拼音 臺灣正體模式</span></span><br><span class="line"><span class="attr">    - schema:</span> terra_pinyin         <span class="comment"># 地球拼音 dì qiú pīn yīn</span></span><br><span class="line"><span class="attr">    - schema:</span> bopomofo             <span class="comment"># 注音</span></span><br><span class="line"><span class="attr">    - schema:</span> jyutping             <span class="comment"># 粵拼</span></span><br><span class="line"><span class="attr">    - schema:</span> cangjie5             <span class="comment"># 倉頡五代</span></span><br><span class="line"><span class="attr">    - schema:</span> cangjie5_express     <span class="comment"># 倉頡 快打模式</span></span><br><span class="line"><span class="attr">    - schema:</span> quick5               <span class="comment"># 速成</span></span><br><span class="line"><span class="attr">    - schema:</span> wubi86               <span class="comment"># 五笔 86</span></span><br><span class="line"><span class="attr">    - schema:</span> wubi_pinyin          <span class="comment"># 五笔拼音混合輸入</span></span><br><span class="line"><span class="attr">    - schema:</span> double_pinyin        <span class="comment"># 自然碼雙拼</span></span><br><span class="line"><span class="attr">    - schema:</span> double_pinyin_mspy   <span class="comment"># 微軟雙拼</span></span><br><span class="line"><span class="attr">    - schema:</span> double_pinyin_abc    <span class="comment"># 智能 ABC 雙拼</span></span><br><span class="line"><span class="attr">    - schema:</span> double_pinyin_flypy  <span class="comment"># 小鶴雙拼</span></span><br><span class="line"><span class="attr">    - schema:</span> wugniu               <span class="comment"># 吳語上海話（新派）</span></span><br><span class="line"><span class="attr">    - schema:</span> wugniu_lopha         <span class="comment"># 吳語上海話（老派）</span></span><br><span class="line"><span class="attr">    - schema:</span> sampheng             <span class="comment"># 中古漢語三拼</span></span><br><span class="line"><span class="attr">    - schema:</span> zyenpheng            <span class="comment"># 中古漢語全拼</span></span><br><span class="line"><span class="attr">    - schema:</span> ipa_xsampa           <span class="comment"># X-SAMPA 國際音標</span></span><br><span class="line"><span class="attr">    - schema:</span> emoji                <span class="comment"># emoji 表情</span></span><br></pre></td></tr></table></figure>
-<p>这里不光添加了小鹤双拼，还添加了其他方案的选单。好了，之后就可以通过 Rime 的快捷键 Ctrl-` 来选择小鹤双拼了。</p>
+<p>连续几个月，我一直在开机日志中看到一句错误提示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">4月 12 23:00:05 raawaa-desktop-arch systemd[1]: Starting Verify integrity of password and group files...</span><br><span class="line">4月 12 23:00:05 raawaa-desktop-arch systemd[1]: Failed to start Verify integrity of password and group files.</span><br></pre></td></tr></table></figure>
+<p>google 了一番，知道了错误是 shadow.service 这个服务引起的，通过 <code>systemctl status shadow.service</code> 命令查看了一下该服务状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">● shadow.service - Verify integrity of password and group files</span><br><span class="line">Loaded: loaded (/usr/lib/systemd/system/shadow.service; static; vendor preset: disabled)</span><br><span class="line">Active: failed (Result: <span class="built_in">exit</span>-code) since 二 2016-04-12 23:00:05 CST; 17min ago</span><br><span class="line">Process: 377 ExecStart=/usr/bin/pwck -r (code=exited, status=2)</span><br><span class="line">Main PID: 377 (code=exited, status=2)</span><br><span class="line"></span><br><span class="line">4月 12 23:00:05 raawaa-desktop-arch systemd[1]: Starting Verify integrity of password and group files...</span><br><span class="line">4月 12 23:00:05 raawaa-desktop-arch pwck[377]: user <span class="string">'lightdm'</span>: directory <span class="string">'/var/lib/lightdm'</span> does not exist</span><br><span class="line">4月 12 23:00:05 raawaa-desktop-arch pwck[377]: pwck: no changes</span><br><span class="line">4月 12 23:00:05 raawaa-desktop-arch systemd[1]: shadow.service: Main process exited, code=exited, status=2/INVALIDARGUMENT</span><br><span class="line">4月 12 23:00:05 raawaa-desktop-arch systemd[1]: Failed to start Verify integrity of password and group files.</span><br><span class="line">4月 12 23:00:05 raawaa-desktop-arch systemd[1]: shadow.service: Unit entered failed state.</span><br><span class="line">4月 12 23:00:05 raawaa-desktop-arch systemd[1]: shadow.service: Failed with result <span class="string">'exit-code'</span>.</span><br></pre></td></tr></table></figure>
+<p>从以上信息可以发现，是 lightdm 这个用户出错了，<code>/etc/passwd</code> 文件中存在这个用户，但是相应的用户文件夹（<code>/var/lib/lightdm</code>）却不存在于文件系统中。回忆当初，我好像确实安装过 lightdm 作为我的 display manager，但之后又把它卸载了。看来卸载过程自动删除了 <code>/var/lib/lightdm</code>  文件夹，却没有连带一起删除 <code>/etc/passwd</code> 中所登记的 lightdm 这个用户。解决方法也很简单，直接将该用户删除。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除用户 lightdm，-r 选项确保用户文件夹连带删除</span></span><br><span class="line">$ sudo userdel -r lightdm</span><br><span class="line"><span class="comment"># 重新启动 shadow  服务</span></span><br><span class="line">$ systemctl start shadow.service</span><br></pre></td></tr></table></figure>
+<p>如此一来相信今后不会再出现类似的开机错误信息了。平时也可以通过 <code>pwck</code> 和 <code>grpck</code> 这两个命令来诊断修复用户和用户组相关的配置文件，在此一并记下备忘。</p>
+<p>另外，谁能告诉我 shadow.service 这个 systemd 服务究竟是干嘛的，不胜感激。</p>
 
       
     </div>
@@ -303,8 +310,6 @@
           
             <a href="/tags/Linux/" rel="tag">#Linux</a>
           
-            <a href="/tags/Rime/" rel="tag">#Rime</a>
-          
         </div>
       
 
@@ -312,16 +317,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/" rel="next" title="〔译〕基础能源公司如何从大数据中获益">
-                <i class="fa fa-chevron-left"></i> 〔译〕基础能源公司如何从大数据中获益
+              <a href="/2016/04/09/cs-for-beginners/" rel="next" title="我所遇到过的入门好书">
+                <i class="fa fa-chevron-left"></i> 我所遇到过的入门好书
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/04/gdm-wont-start-on-boot-with-nvidia-drivers/" rel="prev" title="Nvidia 闭源驱动导致 GDM 故障">
-                Nvidia 闭源驱动导致 GDM 故障 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/05/05/input-with-ibus-on-emacs/" rel="prev" title="在 Emacs 中使用 IBus 输入法">
+                在 Emacs 中使用 IBus 输入法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -480,7 +485,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">安装 Rime 和双拼方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">Ubuntu 下：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.</span> <span class="nav-text">Archlinux 下：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">激活小鹤双拼方案选项</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
@@ -588,9 +593,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'raawaa-static-blog';
-      var disqus_identifier = '2016/04/04/how-to-enable-flypy-in-rime-on-linux/';
-      var disqus_title = '如何在RIME输入法中使用小鹤双拼（linux）';
-      var disqus_url = 'http://raawaa.github.io/2016/04/04/how-to-enable-flypy-in-rime-on-linux/';
+      var disqus_identifier = '2016/04/13/fix-password-and-group-files-integrity/';
+      var disqus_title = '修复 Linux 用户和用户组完整性';
+      var disqus_url = 'http://raawaa.github.io/2016/04/13/fix-password-and-group-files-integrity/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

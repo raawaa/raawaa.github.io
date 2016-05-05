@@ -226,6 +226,212 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/05/input-with-ibus-on-emacs/" itemprop="url">
+                  在 Emacs 中使用 IBus 输入法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-05T20:26:38+08:00" content="2016-05-05">
+              2016-05-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/05/input-with-ibus-on-emacs/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/05/input-with-ibus-on-emacs/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近不再使用完整的桌面环境，改为单独使用 i3wm 窗口管理器。这样清凉的配置可以为我的古董级笔记本电脑带来新生，但是脱离了桌面环境之后好多东西需要手动配置。比如突然发觉 Emacs 中不能正常使用 IBus 输入中文了……最后查出来是 <code>ibus-daemon</code> 在启动时没有添加 <code>--xim</code> 选项。</p>
+<p>IBus 相关的启动配置如下，因为使用了 display manager 所以写在 <code>~/.xprofile</code> 里。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> LC_CTYPE=zh_CN.UTF-8</span><br><span class="line"><span class="built_in">export</span> XMODIFIERS=@im=ibus</span><br><span class="line"><span class="built_in">export</span> GTK_IM_MODULE=ibus</span><br><span class="line"><span class="built_in">export</span> QT_IM_MODULE=ibus</span><br><span class="line">ibus-daemon <span class="_">-d</span> -x</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/13/fix-password-and-group-files-integrity/" itemprop="url">
+                  修复 Linux 用户和用户组完整性
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-13T12:17:59+08:00" content="2016-04-13">
+              2016-04-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/13/fix-password-and-group-files-integrity/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/13/fix-password-and-group-files-integrity/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote class="blockquote-center"><p>Don't confuse things that need action with those that take care of themselves.</p>
+</blockquote>
+<p>Linux 中安装一些软件的时候，会自动在系统中创建相应的用户。比如 mysql、各种 display manager，以及我用来在家里实现 DLNA 视频点播的 minidlna 等等。然而当卸载这些软件的时候，当初自动创建的用户可能还留存在系统中，需要我们手动删除。这几天我就碰到了这样的例子。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/13/fix-password-and-group-files-integrity/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/09/cs-for-beginners/" itemprop="url">
                   我所遇到过的入门好书
                 </a>
@@ -866,7 +1072,7 @@ E = mc^{2}<br>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -876,7 +1082,7 @@ E = mc^{2}<br>
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

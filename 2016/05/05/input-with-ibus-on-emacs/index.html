@@ -39,7 +39,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Linux,Rime," />
+  <meta name="keywords" content="Emacs,Linux,IBus," />
 
 
 
@@ -57,16 +57,19 @@
 
 
 
-<meta name="description" content="在 Windows 版的 RIME 输入法中，已经内置了各种常用的输入方案，而且有图形化的配置工具，开箱即用。Linux 下就是另一回事了，安装之后默认只有全拼，要用上小鹤双拼还得自己动手。">
+<meta name="description" content="最近不再使用完整的桌面环境，改为单独使用 i3wm 窗口管理器。这样清凉的配置可以为我的古董级笔记本电脑带来新生，但是脱离了桌面环境之后好多东西需要手动配置。比如突然发觉 Emacs 中不能正常使用 IBus 输入中文了……最后查出来是 ibus-daemon 在启动时没有添加 --xim 选项。
+IBus 相关的启动配置如下，因为使用了 display manager 所以写在 ~/.xprof">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何在RIME输入法中使用小鹤双拼（linux）">
-<meta property="og:url" content="http://raawaa.github.io/2016/04/04/how-to-enable-flypy-in-rime-on-linux/index.html">
+<meta property="og:title" content="在 Emacs 中使用 IBus 输入法">
+<meta property="og:url" content="http://raawaa.github.io/2016/05/05/input-with-ibus-on-emacs/index.html">
 <meta property="og:site_name" content="小心地滑">
-<meta property="og:description" content="在 Windows 版的 RIME 输入法中，已经内置了各种常用的输入方案，而且有图形化的配置工具，开箱即用。Linux 下就是另一回事了，安装之后默认只有全拼，要用上小鹤双拼还得自己动手。">
-<meta property="og:updated_time" content="2016-04-07T12:11:20.737Z">
+<meta property="og:description" content="最近不再使用完整的桌面环境，改为单独使用 i3wm 窗口管理器。这样清凉的配置可以为我的古董级笔记本电脑带来新生，但是脱离了桌面环境之后好多东西需要手动配置。比如突然发觉 Emacs 中不能正常使用 IBus 输入中文了……最后查出来是 ibus-daemon 在启动时没有添加 --xim 选项。
+IBus 相关的启动配置如下，因为使用了 display manager 所以写在 ~/.xprof">
+<meta property="og:updated_time" content="2016-05-05T12:57:45.674Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何在RIME输入法中使用小鹤双拼（linux）">
-<meta name="twitter:description" content="在 Windows 版的 RIME 输入法中，已经内置了各种常用的输入方案，而且有图形化的配置工具，开箱即用。Linux 下就是另一回事了，安装之后默认只有全拼，要用上小鹤双拼还得自己动手。">
+<meta name="twitter:title" content="在 Emacs 中使用 IBus 输入法">
+<meta name="twitter:description" content="最近不再使用完整的桌面环境，改为单独使用 i3wm 窗口管理器。这样清凉的配置可以为我的古董级笔记本电脑带来新生，但是脱离了桌面环境之后好多东西需要手动配置。比如突然发觉 Emacs 中不能正常使用 IBus 输入中文了……最后查出来是 ibus-daemon 在启动时没有添加 --xim 选项。
+IBus 相关的启动配置如下，因为使用了 display manager 所以写在 ~/.xprof">
 
 
 
@@ -84,7 +87,7 @@
   };
 </script>
 
-  <title> 如何在RIME输入法中使用小鹤双拼（linux） | 小心地滑 </title>
+  <title> 在 Emacs 中使用 IBus 输入法 | 小心地滑 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -224,7 +227,7 @@
             
             
               
-                如何在RIME输入法中使用小鹤双拼（linux）
+                在 Emacs 中使用 IBus 输入法
               
             
           </h1>
@@ -236,8 +239,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-04T15:37:15+08:00" content="2016-04-04">
-              2016-04-04
+            <time itemprop="dateCreated" datetime="2016-05-05T20:26:38+08:00" content="2016-05-05">
+              2016-05-05
             </time>
           </span>
 
@@ -247,8 +250,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/04/how-to-enable-flypy-in-rime-on-linux/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/04/how-to-enable-flypy-in-rime-on-linux/" itemprop="commentsCount"></span>
+                <a href="/2016/05/05/input-with-ibus-on-emacs/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/05/input-with-ibus-on-emacs/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -270,17 +273,9 @@
       
 
       
-        <p>在 Windows 版的 RIME 输入法中，已经内置了各种常用的输入方案，而且有图形化的配置工具，开箱即用。Linux 下就是另一回事了，安装之后默认只有全拼，要用上小鹤双拼还得自己动手。</p>
-<a id="more"></a>
-<h1>安装 Rime 和双拼方案</h1>
-<h2>Ubuntu 下：</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 ibus-rime ，据说 fcitx-rime 不是官方维护的。</span></span><br><span class="line">$ sudo apt-get install ibus-rime</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装双拼方案</span></span><br><span class="line">$ sudo apt-get insatll librime-data-double-pinyin</span><br></pre></td></tr></table></figure>
-<h2>Archlinux 下：</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S ibus-rime  <span class="comment"># Archlinux 下已自带双拼方案，无需另外安装</span></span><br></pre></td></tr></table></figure>
-<h1>激活小鹤双拼方案选项</h1>
-<p>安装完 Rime 之后默认的方案选单里并没有小鹤双拼，需要自己添加进去。新建配置文件 <code>~/.config/ibus/rime/default.custom.yaml</code>, 添加如下内容：</p>
-<figure class="highlight yaml"><figcaption><span>default.custom.yaml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">patch:</span></span><br><span class="line"><span class="attr">  schema_list:</span></span><br><span class="line"><span class="attr">    - schema:</span> luna_pinyin          <span class="comment"># 朙月拼音</span></span><br><span class="line"><span class="attr">    - schema:</span> luna_pinyin_simp     <span class="comment"># 朙月拼音 简化字模式</span></span><br><span class="line"><span class="attr">    - schema:</span> luna_pinyin_tw       <span class="comment"># 朙月拼音 臺灣正體模式</span></span><br><span class="line"><span class="attr">    - schema:</span> terra_pinyin         <span class="comment"># 地球拼音 dì qiú pīn yīn</span></span><br><span class="line"><span class="attr">    - schema:</span> bopomofo             <span class="comment"># 注音</span></span><br><span class="line"><span class="attr">    - schema:</span> jyutping             <span class="comment"># 粵拼</span></span><br><span class="line"><span class="attr">    - schema:</span> cangjie5             <span class="comment"># 倉頡五代</span></span><br><span class="line"><span class="attr">    - schema:</span> cangjie5_express     <span class="comment"># 倉頡 快打模式</span></span><br><span class="line"><span class="attr">    - schema:</span> quick5               <span class="comment"># 速成</span></span><br><span class="line"><span class="attr">    - schema:</span> wubi86               <span class="comment"># 五笔 86</span></span><br><span class="line"><span class="attr">    - schema:</span> wubi_pinyin          <span class="comment"># 五笔拼音混合輸入</span></span><br><span class="line"><span class="attr">    - schema:</span> double_pinyin        <span class="comment"># 自然碼雙拼</span></span><br><span class="line"><span class="attr">    - schema:</span> double_pinyin_mspy   <span class="comment"># 微軟雙拼</span></span><br><span class="line"><span class="attr">    - schema:</span> double_pinyin_abc    <span class="comment"># 智能 ABC 雙拼</span></span><br><span class="line"><span class="attr">    - schema:</span> double_pinyin_flypy  <span class="comment"># 小鶴雙拼</span></span><br><span class="line"><span class="attr">    - schema:</span> wugniu               <span class="comment"># 吳語上海話（新派）</span></span><br><span class="line"><span class="attr">    - schema:</span> wugniu_lopha         <span class="comment"># 吳語上海話（老派）</span></span><br><span class="line"><span class="attr">    - schema:</span> sampheng             <span class="comment"># 中古漢語三拼</span></span><br><span class="line"><span class="attr">    - schema:</span> zyenpheng            <span class="comment"># 中古漢語全拼</span></span><br><span class="line"><span class="attr">    - schema:</span> ipa_xsampa           <span class="comment"># X-SAMPA 國際音標</span></span><br><span class="line"><span class="attr">    - schema:</span> emoji                <span class="comment"># emoji 表情</span></span><br></pre></td></tr></table></figure>
-<p>这里不光添加了小鹤双拼，还添加了其他方案的选单。好了，之后就可以通过 Rime 的快捷键 Ctrl-` 来选择小鹤双拼了。</p>
+        <p>最近不再使用完整的桌面环境，改为单独使用 i3wm 窗口管理器。这样清凉的配置可以为我的古董级笔记本电脑带来新生，但是脱离了桌面环境之后好多东西需要手动配置。比如突然发觉 Emacs 中不能正常使用 IBus 输入中文了……最后查出来是 <code>ibus-daemon</code> 在启动时没有添加 <code>--xim</code> 选项。</p>
+<p>IBus 相关的启动配置如下，因为使用了 display manager 所以写在 <code>~/.xprofile</code> 里。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> LC_CTYPE=zh_CN.UTF-8</span><br><span class="line"><span class="built_in">export</span> XMODIFIERS=@im=ibus</span><br><span class="line"><span class="built_in">export</span> GTK_IM_MODULE=ibus</span><br><span class="line"><span class="built_in">export</span> QT_IM_MODULE=ibus</span><br><span class="line">ibus-daemon <span class="_">-d</span> -x</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -301,9 +296,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/Emacs/" rel="tag">#Emacs</a>
+          
             <a href="/tags/Linux/" rel="tag">#Linux</a>
           
-            <a href="/tags/Rime/" rel="tag">#Rime</a>
+            <a href="/tags/IBus/" rel="tag">#IBus</a>
           
         </div>
       
@@ -312,17 +309,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/" rel="next" title="〔译〕基础能源公司如何从大数据中获益">
-                <i class="fa fa-chevron-left"></i> 〔译〕基础能源公司如何从大数据中获益
+              <a href="/2016/04/13/fix-password-and-group-files-integrity/" rel="next" title="修复 Linux 用户和用户组完整性">
+                <i class="fa fa-chevron-left"></i> 修复 Linux 用户和用户组完整性
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/04/gdm-wont-start-on-boot-with-nvidia-drivers/" rel="prev" title="Nvidia 闭源驱动导致 GDM 故障">
-                Nvidia 闭源驱动导致 GDM 故障 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -480,7 +473,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">安装 Rime 和双拼方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">Ubuntu 下：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.</span> <span class="nav-text">Archlinux 下：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">激活小鹤双拼方案选项</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
@@ -588,9 +581,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'raawaa-static-blog';
-      var disqus_identifier = '2016/04/04/how-to-enable-flypy-in-rime-on-linux/';
-      var disqus_title = '如何在RIME输入法中使用小鹤双拼（linux）';
-      var disqus_url = 'http://raawaa.github.io/2016/04/04/how-to-enable-flypy-in-rime-on-linux/';
+      var disqus_identifier = '2016/05/05/input-with-ibus-on-emacs/';
+      var disqus_title = '在 Emacs 中使用 IBus 输入法';
+      var disqus_url = 'http://raawaa.github.io/2016/05/05/input-with-ibus-on-emacs/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

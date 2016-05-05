@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raawaa.github.io/"/>
-  <updated>2016-04-09T01:37:57.926Z</updated>
+  <updated>2016-05-05T12:57:45.674Z</updated>
   <id>http://raawaa.github.io/</id>
   
   <author>
@@ -14,6 +14,67 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在 Emacs 中使用 IBus 输入法</title>
+    <link href="http://raawaa.github.io/2016/05/05/input-with-ibus-on-emacs/"/>
+    <id>http://raawaa.github.io/2016/05/05/input-with-ibus-on-emacs/</id>
+    <published>2016-05-05T12:26:38.000Z</published>
+    <updated>2016-05-05T12:57:45.674Z</updated>
+    
+    <content type="html">&lt;p&gt;最近不再使用完整的桌面环境，改为单独使用 i3wm 窗口管理器。这样清凉的配置可以为我的古董级笔记本电脑带来新生，但是脱离了桌面环境之后好多东西需要手动配置。比如突然发觉 Emacs 中不能正常使用 IBus 输入中文了……最后查出来是 &lt;code&gt;ibus-daemon&lt;/code&gt; 在启动时没有添加 &lt;code&gt;--xim&lt;/code&gt; 选项。&lt;/p&gt;
+&lt;p&gt;IBus 相关的启动配置如下，因为使用了 display manager 所以写在 &lt;code&gt;~/.xprofile&lt;/code&gt; 里。&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;export&lt;/span&gt; LC_CTYPE=zh_CN.UTF-8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;export&lt;/span&gt; XMODIFIERS=@im=ibus&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;export&lt;/span&gt; GTK_IM_MODULE=ibus&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;export&lt;/span&gt; QT_IM_MODULE=ibus&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ibus-daemon &lt;span class=&quot;_&quot;&gt;-d&lt;/span&gt; -x&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近不再使用完整的桌面环境，改为单独使用 i3wm 窗口管理器。这样清凉的配置可以为我的古董级笔记本电脑带来新生，但是脱离了桌面环境之后好多东西需要手动配置。比如突然发觉 Emacs 中不能正常使用 IBus 输入中文了……最后查出来是 &lt;code&gt;ibus-daemon&lt;
+    
+    </summary>
+    
+    
+      <category term="Emacs" scheme="http://raawaa.github.io/tags/Emacs/"/>
+    
+      <category term="Linux" scheme="http://raawaa.github.io/tags/Linux/"/>
+    
+      <category term="IBus" scheme="http://raawaa.github.io/tags/IBus/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>修复 Linux 用户和用户组完整性</title>
+    <link href="http://raawaa.github.io/2016/04/13/fix-password-and-group-files-integrity/"/>
+    <id>http://raawaa.github.io/2016/04/13/fix-password-and-group-files-integrity/</id>
+    <published>2016-04-13T04:17:59.000Z</published>
+    <updated>2016-04-18T12:45:32.144Z</updated>
+    
+    <content type="html">&lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;Don&#39;t confuse things that need action with those that take care of themselves.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Linux 中安装一些软件的时候，会自动在系统中创建相应的用户。比如 mysql、各种 display manager，以及我用来在家里实现 DLNA 视频点播的 minidlna 等等。然而当卸载这些软件的时候，当初自动创建的用户可能还留存在系统中，需要我们手动删除。这几天我就碰到了这样的例子。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;连续几个月，我一直在开机日志中看到一句错误提示：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;4月 12 23:00:05 raawaa-desktop-arch systemd[1]: Starting Verify integrity of password and group files...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4月 12 23:00:05 raawaa-desktop-arch systemd[1]: Failed to start Verify integrity of password and group files.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;google 了一番，知道了错误是 shadow.service 这个服务引起的，通过 &lt;code&gt;systemctl status shadow.service&lt;/code&gt; 命令查看了一下该服务状态：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;● shadow.service - Verify integrity of password and group files&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Loaded: loaded (/usr/lib/systemd/system/shadow.service; static; vendor preset: disabled)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Active: failed (Result: &lt;span class=&quot;built_in&quot;&gt;exit&lt;/span&gt;-code) since 二 2016-04-12 23:00:05 CST; 17min ago&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Process: 377 ExecStart=/usr/bin/pwck -r (code=exited, status=2)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Main PID: 377 (code=exited, status=2)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4月 12 23:00:05 raawaa-desktop-arch systemd[1]: Starting Verify integrity of password and group files...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4月 12 23:00:05 raawaa-desktop-arch pwck[377]: user &lt;span class=&quot;string&quot;&gt;&#39;lightdm&#39;&lt;/span&gt;: directory &lt;span class=&quot;string&quot;&gt;&#39;/var/lib/lightdm&#39;&lt;/span&gt; does not exist&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4月 12 23:00:05 raawaa-desktop-arch pwck[377]: pwck: no changes&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4月 12 23:00:05 raawaa-desktop-arch systemd[1]: shadow.service: Main process exited, code=exited, status=2/INVALIDARGUMENT&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4月 12 23:00:05 raawaa-desktop-arch systemd[1]: Failed to start Verify integrity of password and group files.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4月 12 23:00:05 raawaa-desktop-arch systemd[1]: shadow.service: Unit entered failed state.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4月 12 23:00:05 raawaa-desktop-arch systemd[1]: shadow.service: Failed with result &lt;span class=&quot;string&quot;&gt;&#39;exit-code&#39;&lt;/span&gt;.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;从以上信息可以发现，是 lightdm 这个用户出错了，&lt;code&gt;/etc/passwd&lt;/code&gt; 文件中存在这个用户，但是相应的用户文件夹（&lt;code&gt;/var/lib/lightdm&lt;/code&gt;）却不存在于文件系统中。回忆当初，我好像确实安装过 lightdm 作为我的 display manager，但之后又把它卸载了。看来卸载过程自动删除了 &lt;code&gt;/var/lib/lightdm&lt;/code&gt;  文件夹，却没有连带一起删除 &lt;code&gt;/etc/passwd&lt;/code&gt; 中所登记的 lightdm 这个用户。解决方法也很简单，直接将该用户删除。&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 删除用户 lightdm，-r 选项确保用户文件夹连带删除&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ sudo userdel -r lightdm&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 重新启动 shadow  服务&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ systemctl start shadow.service&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;如此一来相信今后不会再出现类似的开机错误信息了。平时也可以通过 &lt;code&gt;pwck&lt;/code&gt; 和 &lt;code&gt;grpck&lt;/code&gt; 这两个命令来诊断修复用户和用户组相关的配置文件，在此一并记下备忘。&lt;/p&gt;
+&lt;p&gt;另外，谁能告诉我 shadow.service 这个 systemd 服务究竟是干嘛的，不胜感激。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;Don&#39;t confuse things that need action with those that take care of themselves.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Linux 中安装一些软件的时候，会自动在系统中创建相应的用户。比如 mysql、各种 display manager，以及我用来在家里实现 DLNA 视频点播的 minidlna 等等。然而当卸载这些软件的时候，当初自动创建的用户可能还留存在系统中，需要我们手动删除。这几天我就碰到了这样的例子。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://raawaa.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>我所遇到过的入门好书</title>
