@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raawaa.github.io/"/>
-  <updated>2016-05-05T12:57:45.674Z</updated>
+  <updated>2016-06-14T13:51:26.862Z</updated>
   <id>http://raawaa.github.io/</id>
   
   <author>
@@ -14,6 +14,66 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我的 Linux 常用软件</title>
+    <link href="http://raawaa.github.io/2016/06/14/my-frequently-used-linux-software/"/>
+    <id>http://raawaa.github.io/2016/06/14/my-frequently-used-linux-software/</id>
+    <published>2016-06-14T13:51:26.000Z</published>
+    <updated>2016-06-14T13:51:26.862Z</updated>
+    
+    <content type="html">&lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;Lo!  Men have become the tool of their tools.&lt;br&gt;
+		-- Henry David Thoreau&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;记得是去年底，在笔记本上大胆地装上了 Archlinux，就一发不可收拾地爱上了 Linux。现在已经成为了我的家庭主力系统，除非工作上要上 QQ，平时是不会进 Windows 了。在至今的大半年里，基本上已经形成了固定的使用习惯。在此分享一下我在 Linux 上经常使用的工具。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3&gt;Spacemacs，开箱即用的 Emacs&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://ooo.0o0.ooo/2016/05/23/5742dca78dca4.png&quot; alt=&quot;screenshot_2016-05-23_698x283.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如果不谈小拇指的梗，Emacs 的实用性可以甩开 Vim 几条街。由于本身是一个 Lisp 解释器，所以 Emacs 的配置方式要比 Vim 灵活得多。类似于大部分 Zsh 用户都会安装 oh-my-zsh，Emacs 也有许多出名的配置集，比如 Prelude 和 Steve Purcell 的配置。近期在这些配置集中，Spacemacs 迅速窜红，成为了 Github 上星数最高的 Emacs 配置。&lt;/p&gt;
+&lt;p&gt;Spacemacs 使用称为「layer」的配置子集来实现模块化地配置，默认已提供了各种丰富的 layer，涵盖了日常的各种需求，可按需手动开启，基本做到开箱即用，无需太多自定义就已经十分顺手了。另外 Spacemacs 对 Vim 用户十分友好，通过 Evil 实现了一套完整的 Vim 按键绑定，配合上 Emacs 的强大功能，可以说丢掉 Vim 毫不心疼。对于 Vim 转过来的用户来说，Spacemacs 是一个很好的起点。&lt;/p&gt;
+&lt;h3&gt;i3wm，分屏多任务神器&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://ooo.0o0.ooo/2016/06/14/575ffc4f670f4.jpg&quot; alt=&quot;IMG_2896.JPG&quot;&gt;&lt;/p&gt;
+&lt;p&gt;i3wm 是我尝试的第一款也是唯一一款平铺式窗口管理器。同类型的平铺式窗口管理器有很多，比如出境率较高的 awesome 和 xmonad 我都没有使用过。还有什么手动平铺和自动平铺我也搞不太明白。i3 易于配置的特点让我一上手就再也不想尝试别的了。它的配置文件简单易读，自定义起来不会太过折腾。配合 Dmenu 作为软件启动器，操作起来行云流水。&lt;/p&gt;
+&lt;p&gt;桌面环境我尝试过不少，Ubuntu 的 Unity、轻量级的 XFCE，以及 Gnome2 和 Gnome3，高中的时候还在电脑上试过神奇的 Enlightment（当时对 Linux 还整不太明白）。如今还是觉得简简单单的一个平铺式窗口管理器最为朴实实用。&lt;/p&gt;
+&lt;h3&gt;ranger，用 Vim 的指法管理文件&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://ooo.0o0.ooo/2016/05/25/5745b797c7e36.png&quot; alt=&quot;ranger.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;从重量级的 Gnome 转到 i3 窗口管理器之后，很想找一个轻量的、可以脱离鼠标操作的文件管理器。在使用 ranger 并适应了一段时间后，发现它正是我所想要的。&lt;/p&gt;
+&lt;p&gt;ranger 是基于 ncurses 的，所以得从终端启动。按键绑定和许多操作都类似于 Vim。通过多标签和设置 bookmark 等方式可以快速地在目录间跳转。并且和 shell 结合得也很好，可以很方便地对选中的文件或目录执行 shell 命令。&lt;/p&gt;
+&lt;h3&gt;briss，在 Kindle 上看 PDF 的折衷办法&lt;/h3&gt;
+&lt;p&gt;6 寸的 Kindle 看 PDF 是硬伤。PDF 页面在 6 寸的屏幕里，字不比蚂蚁大多少。唯一让自己好受些的办法是，将 Kindle 横屏，并且去掉页面四周的白边，只留下版心。于是某位好心人用 java 开发了 briss。&lt;/p&gt;
+&lt;p&gt;briss 可以很便捷地完成 PDF 文件去白边的操作。它将一本 PDF 书的所有页面重叠在一起，侦测页面四周没有字符重叠的区域。经过处理的 PDF 再导入 Kindle 横屏阅读，读起来就没那么累了。&lt;/p&gt;
+&lt;h3&gt;minidlna，实现家庭视频点播&lt;/h3&gt;
+&lt;p&gt;现在不少智能电视和安卓盒子都支持 DLNA 的多媒体分享方式。minidlna 是一个 DLNA 伺服器程序。在 PC 上运行后，可以让播放终端（智能电视、手机、电视盒子等）很方便地浏览和点播 PC 硬盘上的媒体文件。相比之下，Windows 自带的 DLNA 功能似乎必须手动在 PC 上推送，一点也不方便。（Windows 上推荐 PS3 Media Server 作为 DLNA 伺服器，十分强大，甚至支持外挂字幕的推送）&lt;/p&gt;
+&lt;p&gt;minidlna 唯一的遗憾是不支持外挂字幕，搞得我每次需要把视频和字幕文件重新封装成一个 mkv 文件之后再到电视上点播。&lt;/p&gt;
+&lt;h3&gt;qbittorrent，Linux 下的 µTorrent&lt;/h3&gt;
+&lt;p&gt;虽然很多发行版默认的 BT 软件是 Transmission，虽然 Transmission 的确有很多优势（比如无 gui 的 daemon 模式），但我还是比较习惯用 qbittorrent。它的设计更类似于 µTorrent，设置项也比较丰富。&lt;/p&gt;
+&lt;h3&gt;poppler，简单实用的 PDF 处理工具&lt;/h3&gt;
+&lt;p&gt;poppler 提供了一套操作 PDF 文件的终端命令集，弥补了 Linux 上没有 Acrobat 的不足，虽然功能简单，但基本能满足日常需求了。几个主要的命令工具包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;pdfdetach&lt;/strong&gt; 提取 PDF 中嵌入的文件&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pdffonts&lt;/strong&gt; 查看 PDF 中的字体信息&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pdfimages&lt;/strong&gt; 提取 PDF 中的图片&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pdfseparate&lt;/strong&gt; 提取 PDF 中的指定页面&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pdftocairo&lt;/strong&gt; 将 PDF 转换为图片文件&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pdftohtml&lt;/strong&gt; 将 PDF 文件转为 HTML 文件&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pdftotext&lt;/strong&gt; 将 PDF 文件转为纯文本&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pdfunite&lt;/strong&gt; 将多个 PDF 文件合并为一个 PDF 文件&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;Lo!  Men have become the tool of their tools.&lt;br&gt;
+		-- Henry David Thoreau&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;记得是去年底，在笔记本上大胆地装上了 Archlinux，就一发不可收拾地爱上了 Linux。现在已经成为了我的家庭主力系统，除非工作上要上 QQ，平时是不会进 Windows 了。在至今的大半年里，基本上已经形成了固定的使用习惯。在此分享一下我在 Linux 上经常使用的工具。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://raawaa.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>在 Emacs 中使用 IBus 输入法</title>
