@@ -39,7 +39,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Git," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -57,24 +57,15 @@
 
 
 
-<meta name="description" content="At the source of every error which is blamed on the computer you will find at least two human errors, including the error of blaming it on the computer.
-
-这个博客是用 Hexo 生成的静态网站，文章内容用 Git 作版本控制。前几天在一次提交之后">
-<meta property="og:type" content="article">
-<meta property="og:title" content="危险! 分离头指针">
-<meta property="og:url" content="http://raawaa.github.io/2016/04/07/git-detached-head/index.html">
+<meta name="description" content="Learn as if you were to live forever.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="小心地滑">
+<meta property="og:url" content="http://raawaa.github.io/tags/Org-mode/index.html">
 <meta property="og:site_name" content="小心地滑">
-<meta property="og:description" content="At the source of every error which is blamed on the computer you will find at least two human errors, including the error of blaming it on the computer.
-
-这个博客是用 Hexo 生成的静态网站，文章内容用 Git 作版本控制。前几天在一次提交之后">
-<meta property="og:image" content="http://i.stack.imgur.com/ql2gY.png">
-<meta property="og:updated_time" content="2016-04-07T12:50:58.848Z">
+<meta property="og:description" content="Learn as if you were to live forever.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="危险! 分离头指针">
-<meta name="twitter:description" content="At the source of every error which is blamed on the computer you will find at least two human errors, including the error of blaming it on the computer.
-
-这个博客是用 Hexo 生成的静态网站，文章内容用 Git 作版本控制。前几天在一次提交之后">
-<meta name="twitter:image" content="http://i.stack.imgur.com/ql2gY.png">
+<meta name="twitter:title" content="小心地滑">
+<meta name="twitter:description" content="Learn as if you were to live forever.">
 
 
 
@@ -92,7 +83,7 @@
   };
 </script>
 
-  <title> 危险! 分离头指针 | 小心地滑 </title>
+  <title> 标签: Org-mode | 小心地滑 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -123,7 +114,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -211,140 +202,46 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        Org-mode
+        <small>标签</small>
+      </h2>
+    </div>
 
     
-      <header class="post-header">
+      
 
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
+            <a class="post-title-link" href="/2016/10/12/Writing-docx-with-org-mode-and-pandoc/" itemprop="url">
               
-                危险! 分离头指针
+                <span itemprop="name">用Org-mode与pandoc编写Word文档</span>
               
-            
-          </h1>
+            </a>
         
+      </h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-07T12:29:12+08:00" content="2016-04-07">
-              2016-04-07
-            </time>
-          </span>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-10-12T21:14:22+08:00"
+              content="2016-10-12" >
+          10-12
+        </time>
+      </div>
 
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/07/git-detached-head/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/07/git-detached-head/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <blockquote class="blockquote-center"><p>At the source of every error which is blamed on the computer you will find at least two human errors, including the error of blaming it on the computer.</p>
-</blockquote>
-<p>这个博客是用 <a href="https://hexo.io" target="_blank" rel="external">Hexo</a> 生成的静态网站，文章内容用 Git 作版本控制。前几天在一次提交之后，发现提交的内容不见了，到底发生了什么？</p>
-<a id="more"></a>
-<h3>案件回放</h3>
-<p>当时我认为自己正处在 <code>master</code> 分支上，编辑提交后随手查看了一下 <code>git log</code> ，发现 <code>master</code> 分支指针仍指在前一次提交上，并没有前进。这是我第一次碰到这种情况，当我发现有些不对劲的时候，我无知地直接检出了 <code>master</code> 分支。于是刚刚提交的改动都消失不见了，从 log 里也找不到那次提交的痕迹。这也要怪 <a href="https://magit.vc/" target="_blank" rel="external">Magit!</a> 没有给我任何警告，倒是命令行下的 git 给出一行提示：我处于分离头指针状态，</p>
-<h3>分离头指针（detached HEAD）</h3>
-<p><img src="http://i.stack.imgur.com/ql2gY.png" alt="detached HEAD"></p>
-<p>通常，我们工作在某一个分支上，比如 master 分支。这个时候 master 指针和 HEAD 指针是一起前进的，每做一次提交，这两个指针就会一起向前挪一步。但是在某种情况下（例如 checkout 了某个具体的 commit），master 指针 和 HEAD 指针这种「绑定」的状态就被打破了，变成了分离头指针状态。我那天遇到的情况是，master 和 HEAD 指针看上去指在同一个 commit 上，但其实已经处在分离头指针状态。当我在此时又做了一次新的提交时，HEAD 指针跑到 master 指针前面去了。如果我直接检出 master 分支，HEAD 指针就会回退一格到 master 指针的位置，而最新的那次提交就变成了孤立的提交，没有任何分支能追踪到它，刚才的活白干了。</p>
-<p>吃一堑长一智，下面是解决办法：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 强制将 master 分支指向当前头指针的位置</span></span><br><span class="line">git branch <span class="_">-f</span> master HEAD</span><br><span class="line"><span class="comment"># 检出 master 分支</span></span><br><span class="line">git checkout master</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    <div>
-      
-        
-      
-    </div>
-
-    <div>
-      
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Git/" rel="tag">#Git</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/04/04/gdm-wont-start-on-boot-with-nvidia-drivers/" rel="next" title="Nvidia 闭源驱动导致 GDM 故障">
-                <i class="fa fa-chevron-left"></i> Nvidia 闭源驱动导致 GDM 故障
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/09/cs-for-beginners/" rel="prev" title="我所遇到过的入门好书">
-                我所遇到过的入门好书 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
+    
   </div>
+
+  
 
 
           </div>
@@ -352,17 +249,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -382,17 +268,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -480,17 +357,6 @@
       </section>
 
       
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">案件回放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">分离头指针（detached HEAD）</span></a></li></ol></div>
-            
-          </div>
-        </section>
-      
 
     </div>
   </aside>
@@ -574,10 +440,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
-
-
 
   
 
@@ -594,9 +456,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'raawaa-static-blog';
-      var disqus_identifier = '2016/04/07/git-detached-head/';
-      var disqus_title = '危险! 分离头指针';
-      var disqus_url = 'http://raawaa.github.io/2016/04/07/git-detached-head/';
+      var disqus_identifier = 'tags/Org-mode/index.html';
+      var disqus_title = '';
+      var disqus_url = '';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
@@ -607,8 +469,6 @@
       }
 
       run_disqus_script('count.js');
-      
-        run_disqus_script('embed.js');
       
     </script>
   

@@ -226,6 +226,124 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/12/Writing-docx-with-org-mode-and-pandoc/" itemprop="url">
+                  用Org-mode与pandoc编写Word文档
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T21:14:22+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/12/Writing-docx-with-org-mode-and-pandoc/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/12/Writing-docx-with-org-mode-and-pandoc/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote class="blockquote-center"><p>Do not do unto others as you would they should do unto you.  Their tastes may not be the same.<br>
+		              -- George Bernard Shaw</p>
+</blockquote>
+<p>日常编辑长文档，能用 Markdown/LaTeX之类的纯文本我当然是最喜欢的了。但是周围人大部分用的都是 Word，坚持自己的怪癖会给别人带来困扰。最近发现了一个曲线救国的办法：使用 Emacs 的 Org-mode 写文档，然后用 pandoc 转成 Word 文件。</p>
+<h2>Pros</h2>
+<ul>
+<li>纯文本，便于版本控制。</li>
+<li>Org-mode 与 Emacs 天生绝配，比 Markdown 有更丰富的功能（比如表格公式计算），比 LaTeX 的坑少（原生中文支持）。</li>
+<li>内容与样式分离。pandoc在文档转换时可以指定一个外部 docx 文件作为样式模板。在 Org-mode 中编辑时只需要关心文档结构和内容。</li>
+<li>通过 pandoc 不但可以生成 docx 格式的 Word 文件，还可以直接转成电子书 epub 格式（可惜如果要放进 Kindle 里还需要加工一下）。</li>
+<li>不用碰鼠标。</li>
+</ul>
+<h2>Cons</h2>
+<ul>
+<li>pandoc 对 docx 文件的支持还是有点问题，比如不能生成交叉引用。</li>
+<li>Org-mode 的表格功能虽然很强大，但是竟然不能跨行合并单元格，啊兮吧~！</li>
+<li>Org-mode 中的「强调」、「下划线」等格式标签无法被 pandoc 识别。</li>
+</ul>
+<p>其实我还可以试一试带着 pandoc 口音的 Markdown 方言。然而截稿时间快到了~</p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/14/my-frequently-used-linux-software/" itemprop="url">
                   我的 Linux 常用软件
                 </a>
@@ -1177,7 +1295,7 @@ E = mc^{2}<br>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1187,7 +1305,7 @@ E = mc^{2}<br>
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raawaa.github.io/"/>
-  <updated>2016-06-14T13:51:26.862Z</updated>
+  <updated>2016-10-12T13:14:22.790Z</updated>
   <id>http://raawaa.github.io/</id>
   
   <author>
@@ -16,11 +16,55 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>用Org-mode与pandoc编写Word文档</title>
+    <link href="http://raawaa.github.io/2016/10/12/Writing-docx-with-org-mode-and-pandoc/"/>
+    <id>http://raawaa.github.io/2016/10/12/Writing-docx-with-org-mode-and-pandoc/</id>
+    <published>2016-10-12T13:14:22.000Z</published>
+    <updated>2016-10-12T13:14:22.790Z</updated>
+    
+    <content type="html">&lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;Do not do unto others as you would they should do unto you.  Their tastes may not be the same.&lt;br&gt;
+		              -- George Bernard Shaw&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;日常编辑长文档，能用 Markdown/LaTeX之类的纯文本我当然是最喜欢的了。但是周围人大部分用的都是 Word，坚持自己的怪癖会给别人带来困扰。最近发现了一个曲线救国的办法：使用 Emacs 的 Org-mode 写文档，然后用 pandoc 转成 Word 文件。&lt;/p&gt;
+&lt;h2&gt;Pros&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;纯文本，便于版本控制。&lt;/li&gt;
+&lt;li&gt;Org-mode 与 Emacs 天生绝配，比 Markdown 有更丰富的功能（比如表格公式计算），比 LaTeX 的坑少（原生中文支持）。&lt;/li&gt;
+&lt;li&gt;内容与样式分离。pandoc在文档转换时可以指定一个外部 docx 文件作为样式模板。在 Org-mode 中编辑时只需要关心文档结构和内容。&lt;/li&gt;
+&lt;li&gt;通过 pandoc 不但可以生成 docx 格式的 Word 文件，还可以直接转成电子书 epub 格式（可惜如果要放进 Kindle 里还需要加工一下）。&lt;/li&gt;
+&lt;li&gt;不用碰鼠标。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Cons&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;pandoc 对 docx 文件的支持还是有点问题，比如不能生成交叉引用。&lt;/li&gt;
+&lt;li&gt;Org-mode 的表格功能虽然很强大，但是竟然不能跨行合并单元格，啊兮吧~！&lt;/li&gt;
+&lt;li&gt;Org-mode 中的「强调」、「下划线」等格式标签无法被 pandoc 识别。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其实我还可以试一试带着 pandoc 口音的 Markdown 方言。然而截稿时间快到了~&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;Do not do unto others as you would they should do unto you.  Their tastes may not be the same.&lt;br&gt;
+
+    
+    </summary>
+    
+    
+      <category term="Emacs" scheme="http://raawaa.github.io/tags/Emacs/"/>
+    
+      <category term="Org-mode" scheme="http://raawaa.github.io/tags/Org-mode/"/>
+    
+      <category term="pandoc" scheme="http://raawaa.github.io/tags/pandoc/"/>
+    
+  </entry>
+  
+  <entry>
     <title>我的 Linux 常用软件</title>
     <link href="http://raawaa.github.io/2016/06/14/my-frequently-used-linux-software/"/>
     <id>http://raawaa.github.io/2016/06/14/my-frequently-used-linux-software/</id>
     <published>2016-06-14T13:51:26.000Z</published>
-    <updated>2016-06-14T13:51:26.862Z</updated>
+    <updated>2016-06-14T13:54:18.054Z</updated>
     
     <content type="html">&lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;Lo!  Men have become the tool of their tools.&lt;br&gt;
 		-- Henry David Thoreau&lt;/p&gt;
@@ -42,6 +86,8 @@
 &lt;h3&gt;briss，在 Kindle 上看 PDF 的折衷办法&lt;/h3&gt;
 &lt;p&gt;6 寸的 Kindle 看 PDF 是硬伤。PDF 页面在 6 寸的屏幕里，字不比蚂蚁大多少。唯一让自己好受些的办法是，将 Kindle 横屏，并且去掉页面四周的白边，只留下版心。于是某位好心人用 java 开发了 briss。&lt;/p&gt;
 &lt;p&gt;briss 可以很便捷地完成 PDF 文件去白边的操作。它将一本 PDF 书的所有页面重叠在一起，侦测页面四周没有字符重叠的区域。经过处理的 PDF 再导入 Kindle 横屏阅读，读起来就没那么累了。&lt;/p&gt;
+&lt;h3&gt;mpv，mplayer 后继有人&lt;/h3&gt;
+&lt;p&gt;如果还在用 mplayer，赶快换成 mpv 吧。&lt;/p&gt;
 &lt;h3&gt;minidlna，实现家庭视频点播&lt;/h3&gt;
 &lt;p&gt;现在不少智能电视和安卓盒子都支持 DLNA 的多媒体分享方式。minidlna 是一个 DLNA 伺服器程序。在 PC 上运行后，可以让播放终端（智能电视、手机、电视盒子等）很方便地浏览和点播 PC 硬盘上的媒体文件。相比之下，Windows 自带的 DLNA 功能似乎必须手动在 PC 上推送，一点也不方便。（Windows 上推荐 PS3 Media Server 作为 DLNA 伺服器，十分强大，甚至支持外挂字幕的推送）&lt;/p&gt;
 &lt;p&gt;minidlna 唯一的遗憾是不支持外挂字幕，搞得我每次需要把视频和字幕文件重新封装成一个 mkv 文件之后再到电视上点播。&lt;/p&gt;
@@ -94,9 +140,9 @@
     </summary>
     
     
-      <category term="Emacs" scheme="http://raawaa.github.io/tags/Emacs/"/>
-    
       <category term="Linux" scheme="http://raawaa.github.io/tags/Linux/"/>
+    
+      <category term="Emacs" scheme="http://raawaa.github.io/tags/Emacs/"/>
     
       <category term="IBus" scheme="http://raawaa.github.io/tags/IBus/"/>
     
