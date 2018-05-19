@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="小心地滑">
 <meta property="og:description" content="想尝试一下自己能不能入门 C++，给自己设了一个小目标：撸一个跨平台带 GUI 的 Hello World。GUI 库选择了 wxWidgets。最后花了一整个礼拜的下班时间才搞出来。在这里记下折腾过程。需要分几篇才能写完：  Windows 下项目构建（本篇） Linux 下的项目构建 改进项目目录结构（out-of-source build） 将整个 wxWidgets 源码库变成项目内的 g">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-19T06:10:55.720Z">
+<meta property="og:updated_time" content="2018-05-19T06:34:55.524Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Build Cross-platform Hello World with CMake and wxWidgets Pt.1">
 <meta name="twitter:description" content="想尝试一下自己能不能入门 C++，给自己设了一个小目标：撸一个跨平台带 GUI 的 Hello World。GUI 库选择了 wxWidgets。最后花了一整个礼拜的下班时间才搞出来。在这里记下折腾过程。需要分几篇才能写完：  Windows 下项目构建（本篇） Linux 下的项目构建 改进项目目录结构（out-of-source build） 将整个 wxWidgets 源码库变成项目内的 g">
@@ -144,7 +144,6 @@
 <h2>Windows 下编译 wxWidgets</h2>
 <p>下载源码包之后根据源码目录里的文档进行编译。编译过程非常顺利。</p>
 <p>Windows 下编译 wxWidgets 有很多选择，微软 msvc 或者 MinGW gcc 都行。我下载时（2018 年 5 月）wxWidgets 的最新稳定版 3.0.4 直接提供了各种编译器的 Makefile，直接使用即可——据说之后新版会用 CMake 来管理构建。<br>
-er and build the p<br>
 最终编译结果（二进制库文件）会根据所使用的编译器和编译选项，存储在源码目录的 <code>lib</code> 子目录中。例如我使用 msvc 编译器，并指定要带 UNICODE 支持的 DEBUG 版本。则编译结果存储在 <code>&lt;wxWidgets源码根目录&gt;/lib/mswud</code> 中。<code>mswud</code> 中的 <code>u</code> 和 <code>d</code> 分别代表 UNICODE 支持和 DEBUG 版本。</p>
 <h2>构建 Hello World 项目</h2>
 <p>有了所依赖的 GUI 图形库，就可以着手新建自己的项目了。项目结构如下：</p>
