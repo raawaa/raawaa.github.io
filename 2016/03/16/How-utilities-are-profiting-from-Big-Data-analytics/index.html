@@ -1,282 +1,150 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion">
+<!DOCTYPE html>
+<html lang=zh>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
-
-
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="BigData,Hadoop," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="小心地滑" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
-
-
-
-
-
-
-<meta name="description" content="原文刊载于工程与技术杂志（Engineering and Technology Magazine）2014年第一期，水平有限，翻译之后读起来反而更费劲了。
-
-在欧洲，面向商用和民用的供电、燃气、供水公司为了深入了解用户趋势、提高效益，都在寻找方法分析它们的智能系统所产生的海量数据。">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="原文刊载于工程与技术杂志（Engineering and Technology Magazine）2014年第一期，水平有限，翻译之后读起来反而更费劲了。  在欧洲，面向商用和民用的供电、燃气、供水公司为了深入了解用户趋势、提高效益，都在寻找方法分析它们的智能系统所产生的海量数据。">
+<meta name="keywords" content="BigData,Hadoop">
 <meta property="og:type" content="article">
 <meta property="og:title" content="〔译〕基础能源公司如何从大数据中获益">
 <meta property="og:url" content="http://raawaa.github.io/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/index.html">
 <meta property="og:site_name" content="小心地滑">
-<meta property="og:description" content="原文刊载于工程与技术杂志（Engineering and Technology Magazine）2014年第一期，水平有限，翻译之后读起来反而更费劲了。
-
-在欧洲，面向商用和民用的供电、燃气、供水公司为了深入了解用户趋势、提高效益，都在寻找方法分析它们的智能系统所产生的海量数据。">
-<meta property="og:updated_time" content="2016-04-04T08:38:23.229Z">
+<meta property="og:description" content="原文刊载于工程与技术杂志（Engineering and Technology Magazine）2014年第一期，水平有限，翻译之后读起来反而更费劲了。  在欧洲，面向商用和民用的供电、燃气、供水公司为了深入了解用户趋势、提高效益，都在寻找方法分析它们的智能系统所产生的海量数据。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2016-04-04T08:38:23.230Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="〔译〕基础能源公司如何从大数据中获益">
-<meta name="twitter:description" content="原文刊载于工程与技术杂志（Engineering and Technology Magazine）2014年第一期，水平有限，翻译之后读起来反而更费劲了。
-
-在欧洲，面向商用和民用的供电、燃气、供水公司为了深入了解用户趋势、提高效益，都在寻找方法分析它们的智能系统所产生的海量数据。">
-
-
-
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"always"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 0,
-      author: '博主'
-    }
-  };
-</script>
-
-  <title> 〔译〕基础能源公司如何从大数据中获益 | 小心地滑 </title>
+<meta name="twitter:description" content="原文刊载于工程与技术杂志（Engineering and Technology Magazine）2014年第一期，水平有限，翻译之后读起来反而更费劲了。  在欧洲，面向商用和民用的供电、燃气、供水公司为了深入了解用户趋势、提高效益，都在寻找方法分析它们的智能系统所产生的海量数据。">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>〔译〕基础能源公司如何从大数据中获益</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="http://github.com/raawaa">项目</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2016/04/04/how-to-enable-flypy-in-rime-on-linux/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2015/11/05/test-mathjax/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://raawaa.github.io/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://raawaa.github.io/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/&text=〔译〕基础能源公司如何从大数据中获益"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://raawaa.github.io/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/&title=〔译〕基础能源公司如何从大数据中获益"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://raawaa.github.io/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/&is_video=false&description=〔译〕基础能源公司如何从大数据中获益"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=〔译〕基础能源公司如何从大数据中获益&body=Check out this article: http://raawaa.github.io/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://raawaa.github.io/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/&title=〔译〕基础能源公司如何从大数据中获益"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://raawaa.github.io/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/&title=〔译〕基础能源公司如何从大数据中获益"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://raawaa.github.io/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/&title=〔译〕基础能源公司如何从大数据中获益"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://raawaa.github.io/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/&title=〔译〕基础能源公司如何从大数据中获益"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://raawaa.github.io/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/&name=〔译〕基础能源公司如何从大数据中获益&description=&lt;p&gt;&lt;a href=&quot;http://eandt.theiet.org/magazine/2014/01/data-on-demand.cfm&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;原文&lt;/a&gt;刊载于工程与技术杂志（Engineering and Technology Magazine）2014年第一期，水平有限，翻译之后读起来反而更费劲了。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在欧洲，面向商用和民用的供电、燃气、供水公司为了深入了解用户趋势、提高效益，都在寻找方法分析它们的智能系统所产生的海量数据。&lt;/p&gt;
+&lt;/blockquote&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
 
-  
-
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?08fa74fbe74b276fedec4ab07dad4c4f";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">小心地滑</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-  <p class="site-subtitle">Learn as if you were to live forever.</p>
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">智能仪表拓展了数据的疆域</span></a></li></ol>
+    </div>
+  </span>
 </div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
     
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
     
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                〔译〕基础能源公司如何从大数据中获益
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-16T20:05:52+08:00" content="2016-03-16">
-              2016-03-16
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
+    <h1 class="posttitle" itemprop="name headline">
+        〔译〕基础能源公司如何从大数据中获益
+    </h1>
 
 
-    <div class="post-body" itemprop="articleBody">
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">小心地滑</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2016-03-16T12:05:52.000Z" itemprop="datePublished">2016-03-16</time>
+    </div>
+
 
       
-      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/BigData/">BigData</a>, <a class="tag-link" href="/tags/Hadoop/">Hadoop</a>
+    </div>
 
-      
-        <p><a href="http://eandt.theiet.org/magazine/2014/01/data-on-demand.cfm" target="_blank" rel="external">原文</a>刊载于工程与技术杂志（Engineering and Technology Magazine）2014年第一期，水平有限，翻译之后读起来反而更费劲了。</p>
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><a href="http://eandt.theiet.org/magazine/2014/01/data-on-demand.cfm" target="_blank" rel="noopener">原文</a>刊载于工程与技术杂志（Engineering and Technology Magazine）2014年第一期，水平有限，翻译之后读起来反而更费劲了。</p>
 <blockquote>
 <p>在欧洲，面向商用和民用的供电、燃气、供水公司为了深入了解用户趋势、提高效益，都在寻找方法分析它们的智能系统所产生的海量数据。</p>
 </blockquote>
@@ -292,383 +160,105 @@
 <p>对数据规模的精确估计即便可能，也很难做到。SAP 的 McLelland 相信，在智能仪表的帮助下，未来由能源设施产生的数据规模将从几 G 字节上升到几千 T 字节的数量级。另有来自 GigaOM 网站文章估计，智能仪表的普及将在全球产生每年百万 T 字节的数据。可持续能源中心（Centre for Sustainable Energy, CSE）是一家由公共、私人、志愿者组织组成的联合机构，其目的在于探索应对日益严重的能源消耗和气候变化问题的技术和方法。</p>
 <p>2012年，它们与「西方配电」、「苏格兰及南方能源」、「布里斯托大学」合作发起一个项目，开发一套名为「基于 Hadoop 的智能仪表分析」（Smart Meter Analytics, Scaled by Hadoop）的大数据平台原型，根据其设计可以存储、处理、收集最大 20TB 大小的数据集，相当于13个家庭一年产生的数据量。</p>
 <p>毫无疑问，智能仪表的部署提高了仪表读数的读取频率，CSE 估计，英国消费的一半电力是每 6 个月才读一次读数的，尽管电价计费是以半小时为单位的。CSE 还解释道，目前的表计读数无法提供一天中不同时段的用电情况，而这些数据对于建立精确的用户档案十分关键。</p>
-<p>“我们期望能源用户能参与到公司的决策中来，”英国国家电网输电未来策略团队的 Mark Osborne 解释道，&quot;过去，你所能做的只是每季度得到一张账单，或者去 <a href="http://uSwitch.com" target="_blank" rel="external">uSwitch.com</a> 换一家服务商。但是如今你可以选择在早晨或傍晚电费便宜的时候洗衣服。&quot;</p>
+<p>“我们期望能源用户能参与到公司的决策中来，”英国国家电网输电未来策略团队的 Mark Osborne 解释道，&quot;过去，你所能做的只是每季度得到一张账单，或者去 <a href="http://uSwitch.com" target="_blank" rel="noopener">uSwitch.com</a> 换一家服务商。但是如今你可以选择在早晨或傍晚电费便宜的时候洗衣服。&quot;</p>
 <p>E.ON 集团，一家覆盖全球30个国家的跨国公司，已经与瑞典电信设备供应商「爱立信」建立合约，于 2013 年至 2018 年期间在瑞典安装超过 60 万个智能电表，此举被描述为迈向实时大数据计量的重要一步，以便为 E.ON 的客户提供精确及时的用能信息。</p>
 <p>(未完待续)</p>
 
-      
+  </div>
+</article>
+
+
+
     </div>
     
-    <div>
-      
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="http://github.com/raawaa">项目</a></li>
         
-      
+      </ul>
     </div>
 
-    <div>
-      
-        
-      
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">智能仪表拓展了数据的疆域</span></a></li></ol>
     </div>
 
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/BigData/" rel="tag">#BigData</a>
-          
-            <a href="/tags/Hadoop/" rel="tag">#Hadoop</a>
-          
-        </div>
-      
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://raawaa.github.io/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://raawaa.github.io/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/&text=〔译〕基础能源公司如何从大数据中获益"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://raawaa.github.io/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/&title=〔译〕基础能源公司如何从大数据中获益"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://raawaa.github.io/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/&is_video=false&description=〔译〕基础能源公司如何从大数据中获益"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=〔译〕基础能源公司如何从大数据中获益&body=Check out this article: http://raawaa.github.io/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://raawaa.github.io/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/&title=〔译〕基础能源公司如何从大数据中获益"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://raawaa.github.io/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/&title=〔译〕基础能源公司如何从大数据中获益"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://raawaa.github.io/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/&title=〔译〕基础能源公司如何从大数据中获益"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://raawaa.github.io/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/&title=〔译〕基础能源公司如何从大数据中获益"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://raawaa.github.io/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/&name=〔译〕基础能源公司如何从大数据中获益&description=&lt;p&gt;&lt;a href=&quot;http://eandt.theiet.org/magazine/2014/01/data-on-demand.cfm&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;原文&lt;/a&gt;刊载于工程与技术杂志（Engineering and Technology Magazine）2014年第一期，水平有限，翻译之后读起来反而更费劲了。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在欧洲，面向商用和民用的供电、燃气、供水公司为了深入了解用户趋势、提高效益，都在寻找方法分析它们的智能系统所产生的海量数据。&lt;/p&gt;
+&lt;/blockquote&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2015/11/05/test-mathjax/" rel="next" title="测试 MathJax 公式显示">
-                <i class="fa fa-chevron-left"></i> 测试 MathJax 公式显示
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/04/how-to-enable-flypy-in-rime-on-linux/" rel="prev" title="如何在RIME输入法中使用小鹤双拼（linux）">
-                如何在RIME输入法中使用小鹤双拼（linux） <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
     </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
   </div>
+</div>
 
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
     
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Yu Wenjie
   </div>
-
-
-        </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="http://github.com/raawaa">项目</a></li>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
+      </ul>
+    </nav>
   </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.jpg"
-               alt="Yu Wenjie" />
-          <p class="site-author-name" itemprop="name">Yu Wenjie</p>
-          <p class="site-description motion-element" itemprop="description">Learn as if you were to live forever.</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">10</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">13</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="http://github.com/raawaa" target="_blank">
-                  
-                    <i class="fa fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/raawaa" target="_blank">
-                  
-                    <i class="fa fa-weibo"></i>
-                  
-                  Weibo
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://www.zhihu.com/people/raawaa" target="_blank">
-                  
-                    <i class="fa fa-globe"></i>
-                  
-                  zhihu
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-          <div class="cc-license motion-element" itemprop="license">
-            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
-            </a>
-          </div>
-        
-
-        
-        <div class="links-of-blogroll motion-element">
-          
-        </div>
-
-      </section>
-
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">智能仪表拓展了数据的疆域</span></a></li></ol></div>
-            
-          </div>
-        </section>
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Yu Wenjie</span>
-</div>
-
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-
-
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
-  </div>
-
-  
-
-
-  
-
-
-
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
-
-
-
-  
-
-
-
-  
-
-    <script type="text/javascript">
-      var disqus_shortname = 'raawaa-static-blog';
-      var disqus_identifier = '2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/';
-      var disqus_title = '〔译〕基础能源公司如何从大数据中获益';
-      var disqus_url = 'http://raawaa.github.io/2016/03/16/How-utilities-are-profiting-from-Big-Data-analytics/';
-
-      function run_disqus_script(disqus_script){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
-
-      run_disqus_script('count.js');
-      
-        run_disqus_script('embed.js');
-      
-    </script>
-  
-
-
-
-  
-  
-  
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      },
-      TeX: {  // TeX/LaTeX input processor
-        equationNumbers: { autoNumber: "AMS" },  // only number those equations in specific AMSmath environments
-        extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]  // introduce AMS extensions and suppress generating error messages 
-      },
-      "HTML-CSS": {  // HTML-CSS output processor (this is the default output of MathJax)
-        scale: 110,  // The scaling factor of math with respect to the surrounding text
-        linebreaks: { automatic: true } // automatically breaks the line if necessary
-      },
-      SVG: {  // SVG output processor
-        scale: 110,  // The scaling factor of math with respect to the surrounding text
-        linebreaks: { automatic: true } // automatically breaks the line if necessary
-      },
-      menuSettings: {  // settings for the mathematics contextual menu
-        zoom: "Hover"  // set equation zooming to be triggered by a single mouse click
-      }
-    });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for (i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-    });
-  </script>
-
-  
-    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
-    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
-  
-
-
-  
-
-  
+</footer>
 
 </body>
 </html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="想尝试一下自己能不能入门 C++，给自己设了一个小目标：撸一个跨平台带 GUI 的 Hello World。GUI 库选择了 wxWidgets。最后花了一整个礼拜的下班时间才搞出来。在这里记下折腾过程。需要分几篇才能写完：  Windows 下项目构建（本篇） Linux 下的项目构建 改进项目目录结构（out-of-source build） 将整个 wxWidgets 源码库变成项目内的 g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Build Cross-platform Hello World with CMake and wxWidgets Pt.1">
+<meta property="og:url" content="http://raawaa.github.io/2018/05/19/Build-Cross-platform-Hello-World-with-CMake-and-wxWidgets-Pt-1/index.html">
+<meta property="og:site_name" content="小心地滑">
+<meta property="og:description" content="想尝试一下自己能不能入门 C++，给自己设了一个小目标：撸一个跨平台带 GUI 的 Hello World。GUI 库选择了 wxWidgets。最后花了一整个礼拜的下班时间才搞出来。在这里记下折腾过程。需要分几篇才能写完：  Windows 下项目构建（本篇） Linux 下的项目构建 改进项目目录结构（out-of-source build） 将整个 wxWidgets 源码库变成项目内的 g">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-19T06:10:55.720Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Build Cross-platform Hello World with CMake and wxWidgets Pt.1">
+<meta name="twitter:description" content="想尝试一下自己能不能入门 C++，给自己设了一个小目标：撸一个跨平台带 GUI 的 Hello World。GUI 库选择了 wxWidgets。最后花了一整个礼拜的下班时间才搞出来。在这里记下折腾过程。需要分几篇才能写完：  Windows 下项目构建（本篇） Linux 下的项目构建 改进项目目录结构（out-of-source build） 将整个 wxWidgets 源码库变成项目内的 g">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Build Cross-platform Hello World with CMake and wxWidgets Pt.1</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="http://github.com/raawaa">项目</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2016/10/12/Writing-docx-with-org-mode-and-pandoc/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://raawaa.github.io/2018/05/19/Build-Cross-platform-Hello-World-with-CMake-and-wxWidgets-Pt-1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://raawaa.github.io/2018/05/19/Build-Cross-platform-Hello-World-with-CMake-and-wxWidgets-Pt-1/&text=Build Cross-platform Hello World with CMake and wxWidgets Pt.1"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://raawaa.github.io/2018/05/19/Build-Cross-platform-Hello-World-with-CMake-and-wxWidgets-Pt-1/&title=Build Cross-platform Hello World with CMake and wxWidgets Pt.1"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://raawaa.github.io/2018/05/19/Build-Cross-platform-Hello-World-with-CMake-and-wxWidgets-Pt-1/&is_video=false&description=Build Cross-platform Hello World with CMake and wxWidgets Pt.1"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Build Cross-platform Hello World with CMake and wxWidgets Pt.1&body=Check out this article: http://raawaa.github.io/2018/05/19/Build-Cross-platform-Hello-World-with-CMake-and-wxWidgets-Pt-1/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://raawaa.github.io/2018/05/19/Build-Cross-platform-Hello-World-with-CMake-and-wxWidgets-Pt-1/&title=Build Cross-platform Hello World with CMake and wxWidgets Pt.1"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://raawaa.github.io/2018/05/19/Build-Cross-platform-Hello-World-with-CMake-and-wxWidgets-Pt-1/&title=Build Cross-platform Hello World with CMake and wxWidgets Pt.1"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://raawaa.github.io/2018/05/19/Build-Cross-platform-Hello-World-with-CMake-and-wxWidgets-Pt-1/&title=Build Cross-platform Hello World with CMake and wxWidgets Pt.1"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://raawaa.github.io/2018/05/19/Build-Cross-platform-Hello-World-with-CMake-and-wxWidgets-Pt-1/&title=Build Cross-platform Hello World with CMake and wxWidgets Pt.1"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://raawaa.github.io/2018/05/19/Build-Cross-platform-Hello-World-with-CMake-and-wxWidgets-Pt-1/&name=Build Cross-platform Hello World with CMake and wxWidgets Pt.1&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">Windows 下编译 wxWidgets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">构建 Hello World 项目</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">用 CMake 管理编译</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">连接器错误 &amp; FindwxWidgets</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">2.0.0.3.</span> <span class="toc-text">之前错在哪里？</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">总结一下</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Build Cross-platform Hello World with CMake and wxWidgets Pt.1
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">小心地滑</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-05-19T06:08:45.000Z" itemprop="datePublished">2018-05-19</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>想尝试一下自己能不能入门 C++，给自己设了一个小目标：撸一个跨平台带 GUI 的 Hello World。GUI 库选择了 wxWidgets。最后花了一整个礼拜的下班时间才搞出来。在这里记下折腾过程。需要分几篇才能写完：</p>
+<ol>
+<li><strong>Windows 下项目构建（本篇）</strong></li>
+<li>Linux 下的项目构建</li>
+<li>改进项目目录结构（out-of-source build）</li>
+<li>将整个 wxWidgets 源码库变成项目内的 git submodule （更好地控制版本依赖）</li>
+</ol>
+<p>废话不多，开始吧！</p>
+<h2>Windows 下编译 wxWidgets</h2>
+<p>下载源码包之后根据源码目录里的文档进行编译。编译过程非常顺利。</p>
+<p>Windows 下编译 wxWidgets 有很多选择，微软 msvc 或者 MinGW gcc 都行。我下载时（2018 年 5 月）wxWidgets 的最新稳定版 3.0.4 直接提供了各种编译器的 Makefile，直接使用即可——据说之后新版会用 CMake 来管理构建。<br>
+er and build the p<br>
+最终编译结果（二进制库文件）会根据所使用的编译器和编译选项，存储在源码目录的 <code>lib</code> 子目录中。例如我使用 msvc 编译器，并指定要带 UNICODE 支持的 DEBUG 版本。则编译结果存储在 <code>&lt;wxWidgets源码根目录&gt;/lib/mswud</code> 中。<code>mswud</code> 中的 <code>u</code> 和 <code>d</code> 分别代表 UNICODE 支持和 DEBUG 版本。</p>
+<h2>构建 Hello World 项目</h2>
+<p>有了所依赖的 GUI 图形库，就可以着手新建自己的项目了。项目结构如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">wxtest</span></span><br><span class="line">└── <span class="selector-tag">main</span><span class="selector-class">.cpp</span></span><br></pre></td></tr></table></figure>
+<p><code>main.cpp</code> 的内容直接拷贝了 wxWidgets 官网文档中的范例。</p>
+<h5>用 CMake 管理编译</h5>
+<p>因为要跨平台（Windows 和 Linux），同时不想框死在某个 IDE 下，试着用 CMake 作为构建工具。项目根目录下加入 <code>CMakeLists.txt</code>：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">wxtest</span></span><br><span class="line">├── <span class="selector-tag">CMakeLists</span><span class="selector-class">.txt</span></span><br><span class="line">└── <span class="selector-tag">main</span><span class="selector-class">.cpp</span></span><br></pre></td></tr></table></figure>
+<p>第一次写 <code>CMakeLists.txt</code>，能不能 work 全靠人品😒（事后证明不 work，哈哈😂）：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># wxtest/CMakeLists.txt</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">2.8</span>)</span><br><span class="line"><span class="keyword">project</span>(wxtest)</span><br><span class="line"><span class="keyword">aux_source_directory</span>(. srcs)</span><br><span class="line"><span class="keyword">include_directories</span>($ENV&#123;WXWIN&#125;/<span class="keyword">include</span>/msvc</span><br><span class="line">                    $ENV&#123;WXWIN&#125;/<span class="keyword">include</span>)</span><br><span class="line"><span class="keyword">link_directories</span>($ENV&#123;WXWIN&#125;/lib/mswud)</span><br><span class="line"><span class="keyword">add_executable</span>(<span class="variable">$&#123;PROJECT_NAME&#125;</span> <span class="variable">$&#123;srcs&#125;</span>)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(<span class="variable">$&#123;PROJECT_NAME&#125;</span> 加入的库太多了不想打字了此处省略)</span><br></pre></td></tr></table></figure>
+<p>解释一下。<code>WXWIN</code> 是我自己设置的系统环境变量，指定了 wxWidgets 源码根目录的路径。<code>include_directories</code> 和 <code>link_directories</code> 指令告诉编译器该去哪里找 wxWidgets 的头文件和链接库。<code>target_link_libraries</code> 告诉连接器把先前编译好的 wxWidgets 库文件链接进来。</p>
+<p>看起来很完美啊，我们来编译一下……</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; cmake . -G &quot;MinGW Makefiles&quot;</span><br><span class="line">&gt; mingw32-make -f makefile</span><br></pre></td></tr></table></figure>
+<h5>连接器错误 &amp; FindwxWidgets</h5>
+<p>编译过程中发生了许多链接错误，显然是有些依赖的库没有找到。我尝试了在 <code>CMakeLists.txt</code> 中改变 wxWidgets 链接库的顺序；也试过重新把 wxWidgets 编译成单个库文件（默认编译选项为编译成多个独立模块库文件）。都没法解决。最可疑的还是自己手写的 <code>CMakeLists.txt</code> 。研究了一阵子后，重写了 <code>CMakeLists.txt</code>：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># wxtest/CMakeLists.txt</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">2.8</span>)</span><br><span class="line"><span class="keyword">project</span>(wxtest)</span><br><span class="line"><span class="keyword">aux_source_directory</span>(. srcs)</span><br><span class="line"><span class="keyword">add_executable</span>(<span class="variable">$&#123;PROJECT_NAME&#125;</span> <span class="variable">$&#123;srcs&#125;</span>)</span><br><span class="line"><span class="keyword">set</span>(wxWidgets_ROOT_DIR $ENV&#123;WXWIN&#125;)</span><br><span class="line"><span class="keyword">set</span>(wxWidgets_CONFIGURATION mswud)</span><br><span class="line"><span class="keyword">find_package</span>(wxWidgets COMPONENTS net gl core base)</span><br><span class="line"><span class="keyword">if</span>(wxWidgets_FOUND)</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$&#123;wxWidgets_USE_FILE&#125;</span>)</span><br><span class="line">    <span class="keyword">target_link_libraries</span>(<span class="variable">$&#123;PROJECT_NAME&#125;</span> <span class="variable">$&#123;wxWidgets_LIBRARIES&#125;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br></pre></td></tr></table></figure>
+<p>改写后的 <code>CMakeLists.txt</code> 通过 <code>find_package</code> 指令调用 <code>FindwxWidgets</code> 这个 CMake 模组去自动寻找 wxWidgets 的头文件和库文件位置。</p>
+<p>读 <code>FindwxWidgets.cmake</code> 的源码可以知道，在 Windows 下 <code>FindwxWidgets</code> 模组的行为是根据 <code>wxWidgets_ROOT_DIR</code> 和 <code>wxWidgets_CONFIGURATION</code> 这两个变量的值去寻找相关文件。所以在 <code>find_package</code> 指令前，需要正确设置这两个变量的值。</p>
+<p>尝试再次编译，成功！</p>
+<h5>之前错在哪里？</h5>
+<p>读 <code>FindwxWidgets.cmake</code> 的源码可以知道，在 Windows 平台下，编译 wxWidgets 项目还需要链接一些额外的库：winmm comctl32 oleacc rpcrt4 shlwapi version wsock32（推测是 wxWidgets 自身在 Windows 平台下的依赖）。而这些库在之前的 <code>CMakeLists.txt</code> 中都没有手动加进去，就会 link 不到啦。</p>
+<p>wxWidgets 自身在 Windows 下还依赖哪些库，可能只有 wxWidgets 的作者自己才会知道——当然，如果有心看一下作者源码目录里示例项目的 makefile 也能发现——但是这次吃瘪的教训是，加入第三方库依赖的时候，还是要利用 CMake 提供的模组比较靠谱。好怀念那些带包管理器的「现代」语言😂。</p>
+<h2>总结一下</h2>
+<p>在 Windows 下一个简单的 GUI 程序终于可以运行了。但是还有许多事情要做呢，因为：</p>
+<ul>
+<li>它目前还并没有跨平台；</li>
+<li>编译出来的可执行文件和 CMake 过程文件混在源代码目录里，一片混乱；</li>
+<li>别人要编译我的项目怎么办？需要自己下载相同版本的 wxWidgets 源码自己编译。如果别人下载的版本不对怎么办呢。是不是可以把 wxWidgets 的整个源码包含在自己的项目里，尽可能地做到 self-contained 呢……？</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="http://github.com/raawaa">项目</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">Windows 下编译 wxWidgets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">构建 Hello World 项目</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">用 CMake 管理编译</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">连接器错误 &amp; FindwxWidgets</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">2.0.0.3.</span> <span class="toc-text">之前错在哪里？</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">总结一下</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://raawaa.github.io/2018/05/19/Build-Cross-platform-Hello-World-with-CMake-and-wxWidgets-Pt-1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://raawaa.github.io/2018/05/19/Build-Cross-platform-Hello-World-with-CMake-and-wxWidgets-Pt-1/&text=Build Cross-platform Hello World with CMake and wxWidgets Pt.1"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://raawaa.github.io/2018/05/19/Build-Cross-platform-Hello-World-with-CMake-and-wxWidgets-Pt-1/&title=Build Cross-platform Hello World with CMake and wxWidgets Pt.1"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://raawaa.github.io/2018/05/19/Build-Cross-platform-Hello-World-with-CMake-and-wxWidgets-Pt-1/&is_video=false&description=Build Cross-platform Hello World with CMake and wxWidgets Pt.1"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Build Cross-platform Hello World with CMake and wxWidgets Pt.1&body=Check out this article: http://raawaa.github.io/2018/05/19/Build-Cross-platform-Hello-World-with-CMake-and-wxWidgets-Pt-1/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://raawaa.github.io/2018/05/19/Build-Cross-platform-Hello-World-with-CMake-and-wxWidgets-Pt-1/&title=Build Cross-platform Hello World with CMake and wxWidgets Pt.1"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://raawaa.github.io/2018/05/19/Build-Cross-platform-Hello-World-with-CMake-and-wxWidgets-Pt-1/&title=Build Cross-platform Hello World with CMake and wxWidgets Pt.1"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://raawaa.github.io/2018/05/19/Build-Cross-platform-Hello-World-with-CMake-and-wxWidgets-Pt-1/&title=Build Cross-platform Hello World with CMake and wxWidgets Pt.1"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://raawaa.github.io/2018/05/19/Build-Cross-platform-Hello-World-with-CMake-and-wxWidgets-Pt-1/&title=Build Cross-platform Hello World with CMake and wxWidgets Pt.1"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://raawaa.github.io/2018/05/19/Build-Cross-platform-Hello-World-with-CMake-and-wxWidgets-Pt-1/&name=Build Cross-platform Hello World with CMake and wxWidgets Pt.1&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Yu Wenjie
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="http://github.com/raawaa">项目</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
